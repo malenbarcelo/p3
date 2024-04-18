@@ -42,7 +42,7 @@ app.use(session({
 app.use(userLoggedMiddleware)
 
 //Declare and listen port
-const APP_PORT = 3003
+const APP_PORT = 3004
 app.listen(APP_PORT,() => console.log("Servidor corriendo en puerto " + APP_PORT))
 
 //Routes
