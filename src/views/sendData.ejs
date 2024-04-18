@@ -1,0 +1,118 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<div class="mainTitle">
+    <div class="titleL">Enviar datos</div>
+</div>
+
+<div class="content">
+    
+    <div class="divsSendData">
+
+        <div class="divSendData">
+        
+            <div class="titleM">Datos de vehículo</div>
+    
+            <div class="divInput">
+                <input type="text" name="vehicle" placeholder="Vehículo" class="input1 wL" id="vehicle" autocomplete="off">
+            </div>
+    
+            <div class="divInput">
+                <input type="text" name="latitude" placeholder="Latitud" class="input1 wL" id="latitude" autocomplete="off">
+            </div>
+    
+            <div class="divInput">
+                <input type="text" name="longitude" placeholder="Longitud" class="input1 wL" id="longitude" autocomplete="off">
+            </div>
+
+            <div class="divInput">
+                <input type="text" name="dateTime" placeholder="Fecha y hora" class="input1 wL" id="datetime" autocomplete="off">
+            </div>
+    
+            <div class="divButtonsRow">
+                <button type="submit" class="button1 wXXS pS" id="sendVehicleData">Enviar</button>
+            </div>
+        </div>
+        
+    
+        <div class="divSendData">
+    
+            <div class="titleM">Datos de eventos</div>
+    
+            <div class="divInput">
+                <input type="text" name="vehicle" placeholder="Vehículo" class="input1 wL" id="eventVehicle" autocomplete="off">
+            </div>
+    
+            <div class="divInput">
+                <input type="text" name="step" placeholder="Evento" class="input1 wL" id="event" autocomplete="off">
+            </div>
+    
+            <div class="divInput">
+                <input type="text" name="latitude" placeholder="Latitud" class="input1 wL" id="eventLatitude" autocomplete="off">
+            </div>
+
+            <div class="divInput">
+                <input type="text" name="longitude" placeholder="Longitud" class="input1 wL" id="eventLongitude" autocomplete="off">
+            </div>
+
+            <div class="divInput">
+                <input type="text" name="dateTime" placeholder="Fecha y hora" class="input1 wL" id="eventDatetime" autocomplete="off">
+            </div>
+
+            <div class="divInput">
+                <input type="text" name="duration" placeholder="Duración (segundos)" class="input1 wL" id="duration" autocomplete="off">
+            </div>
+
+            <div class="divInput">
+                <input type="text" name="step" placeholder="Paso" class="input1 wL" id="step1" autocomplete="off">
+                <input type="text" name="stepLatitude" placeholder="Latitud" class="input1 wL" id="stepLatitude1" autocomplete="off">
+                <input type="text" name="stepLongitude" placeholder="Longitu" class="input1 wL" id="stepLongitude1" autocomplete="off">
+                <input type="text" name="stepDatetime" placeholder="Fecha" class="input1 wL" id="stepDatetime1" autocomplete="off">
+                <input type="text" name="stepSpeed" placeholder="Veocidad (km/h)" class="input1 wL" id="stepSpeed1" autocomplete="off">
+            </div>
+
+            <div class="divInput">
+                <input type="text" name="step" placeholder="Paso" class="input1 wL" id="step2" autocomplete="off">
+                <input type="text" name="stepLatitude" placeholder="Latitud" class="input1 wL" id="stepLatitude2" autocomplete="off">
+                <input type="text" name="stepLongitude" placeholder="Longitu" class="input1 wL" id="stepLongitude2" autocomplete="off">
+                <input type="text" name="stepDatetime" placeholder="Fecha" class="input1 wL" id="stepDatetime2" autocomplete="off">
+                <input type="text" name="stepSpeed" placeholder="Veocidad (km/h)" class="input1 wL" id="stepSpeed2" autocomplete="off">
+            </div>
+
+            <div class="divInput">
+                <input type="text" name="step" placeholder="Paso" class="input1 wL" id="step3" autocomplete="off">
+                <input type="text" name="stepLatitude" placeholder="Latitud" class="input1 wL" id="stepLatitude3" autocomplete="off">
+                <input type="text" name="stepLongitude" placeholder="Longitu" class="input1 wL" id="stepLongitude3" autocomplete="off">
+                <input type="text" name="stepDatetime" placeholder="Fecha" class="input1 wL" id="stepDatetime3" autocomplete="off">
+                <input type="text" name="stepSpeed" placeholder="Veocidad (km/h)" class="input1 wL" id="stepSpeed3" autocomplete="off">
+            </div>
+            
+            <div class="divButtonsRow">
+                <button type="submit" class="button1 wXXS pS" id="sendEventData">Enviar</button>
+            </div>
+        </div>
+
+        <div class="divSendData">
+
+            <div class="titleM">Videos</div>
+
+            <form action="/apis/upload-video" method="POST" enctype="multipart/form-data">
+
+                <div class="divInput">
+                    <input type="file" name="video" placeholder="Video" class="input1 wL" id="video" autocomplete="off">
+                </div>
+            
+                <div class="divButtonsRow">
+                    <button type="submit" class="button1 wXXS pS" id="sendVideo">Enviar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    
+</div>
+
+
+
+<script type="module" src="/js/sendData.js"></script>

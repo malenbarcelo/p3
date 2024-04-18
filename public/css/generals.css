@@ -1,0 +1,406 @@
+/*---------------------Colors---------------------*/
+:root{
+    --color1:black;
+    --color2:white;
+    --color3:#051435;
+    --color4:#0046FF;
+    --color5:#d7dcdc;
+}
+
+/*---------------------font family---------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body{
+    font-family:'Poppins', Arial, "sans-serif";
+    margin: 0;
+}
+
+/*---------------------page display---------------------*/
+.header{
+    height: 18vh;
+    
+}
+
+.mainTitle{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content{
+    height: 72vh;
+    overflow: auto;
+}
+
+/*---------------------inputs---------------------*/
+input, select, textarea{
+    outline:none
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}/*Hide arrows from input type number*/
+
+input[type="checkbox"]:checked {
+    accent-color: black
+}
+
+input[type="radio"]:checked {
+accent-color: black
+}
+
+.divInputsRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+
+}
+
+.divInputsColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.divInput{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.input1{
+    text-align: center;
+    border: grey solid 1px;
+    border-radius: 5px;
+    background-color: var(--color2);
+    padding: 8px 0px 4px 0px;
+    font-size: 12px;
+}
+
+.label1{
+    position: absolute;
+    font-size: 12px;
+    left: 8px;
+    top: -8px;
+    padding: 0px 5px;
+    background-color: var(--color2);
+}
+
+/*---------------------Buttons---------------------*/
+.divButtonsRow{
+    display: flex;
+    column-gap: 7px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.divButtonsColumn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    margin-top: 20px;
+}
+
+.button1{
+    background-color: var(--color3);
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    font-size: 13px;
+    color: var(--color2);
+    border: var(--color1) solid 2px;
+}
+
+.button1:hover{
+    background-color: var(--color2);
+    color: var(--color3);
+}
+
+/*---------------------Refs---------------------*/
+a{
+    text-decoration: none;
+    color:black
+}
+
+/*---------------------errors---------------------*/
+.isInvalid{
+    border:rgb(221, 7, 7) solid 2px !important
+}
+
+.divError{
+    color:rgb(206, 10, 10);
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.errorColor{
+    color:rgb(206, 10, 10);
+    font-weight: bold;
+}
+
+/*---------------------others---------------------*/
+.notVisible{
+    display: none;
+}
+
+/*---------------------margins---------------------*/
+.mtS{
+    margin-top: 5px;
+}
+.mbS{
+    margin-bottom: 5px;
+}
+.mtM{
+    margin-top: 15px;
+}
+.mbM{
+    margin-bottom: 15px;
+}
+.mtL{
+    margin-top: 30px;
+}
+.mbL{
+    margin-bottom: 30px;
+}
+
+/*---------------------width---------------------*/
+.wXXS{
+    width: 70px;
+}
+.wS{
+    width: 100px;
+}
+.wM{
+    width: 130px;
+}
+.wL{
+    width: 160px;
+}
+.wXL{
+    width: 200px;
+}
+.wXXL{
+    width: 300px;
+}
+
+/*---------------------padding---------------------*/
+.pS{
+    padding: 4px 0px 4px 0px;
+}
+
+.pL{
+    padding: 11px 0px 11px 0px;
+}
+
+/*---------------------titles---------------------*/
+.divTitles{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.titleL{
+    font-size: 23px;
+    text-align: center;
+}
+
+.titleM{
+    font-size: 18px;
+    text-align: center;
+}
+
+.titleS{
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*---------------------tables---------------------*/
+table{
+    margin: auto;
+    border-collapse: collapse;
+}
+
+thead{
+    position: sticky;
+    top:0;
+}/*to leave titles fixed*/ 
+
+.divTable{
+    max-height: 400px; /*to avoid overflow, it depends on the website landscape*/
+    overflow-y: auto;
+    width: fit-content;
+    margin: auto;
+    position: relative;
+}
+
+.theadCss{
+    font-size: 13px;
+    text-align: center;
+    background-color: var(--color3);
+    color: var(--color2);
+    padding: 4px;
+}
+
+.thLeftBorder{
+    border-top-left-radius: 15px;
+}/*Add radius to left top border*/
+
+.thRightBorder{
+border-top-right-radius: 15px;
+}/*Add radius to right top border*/
+
+.thTall{
+    height: 25px;
+}
+
+.divThWithIcon{
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+/*------Tbody------*/
+.tBody1{
+    font-weight: lighter;
+    padding: 9px 0px;
+    font-size: 13px;
+}
+
+.tBodyEven{
+    background-color: var(--color2);
+}/*background when row number is even*/
+
+.tBodyOdd{
+    background-color: var(--color5);
+}/*background when row number is odd*/
+
+.bodyIcon{
+    cursor: pointer;
+}
+
+.bodyIcon:hover{
+    font-size: 15px;
+}
+
+/*---------------------Icons---------------------*/
+.filterIcon,.theadIcon{
+    cursor: pointer;
+}
+
+
+/*---------------------Popups---------------------*/
+/*-----side popups-----*/
+.sidePopup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    height:100%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    background-color: var(--color2);
+}
+
+.slideIn {
+    display: block;
+    animation: slideIn 0.8s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.sidePXL{
+    width: 1000px;
+}
+
+.sidePtitle{
+    margin-top: 40px;
+}
+
+.sidePsubtitle{
+    margin-top: 20px;
+
+}
+
+.closeSidePopup{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 14px;
+    border: var(--color3) solid 2px;
+    color: var(--color3);
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.closeSidePopup:hover{    
+    color: var(--color2);
+    background-color: var(--color3);
+}
+
+/*-----info popups-----*/
+
+.infoPopup{
+    display: none;
+    padding: 20px;
+    border-radius: 5px;
+    border: var(--color1) solid 2px;
+    position: absolute;
+    background-color: var(--color2);
+}
+
+.showActionPopup{
+    display: none;
+    padding: 2px 5px;
+    position: absolute;
+    background-color: var(--color3);
+    font-size: 12   px;
+    border-radius: 3px;
+    color: var(--color2);
+}
+
+.closePopup{
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 11px;
+    border: var(--color3) solid 2px;
+    color: var(--color3);
+    padding: 2px 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.closePopup:hover{    
+    color: var(--color2);
+    background-color: var(--color3);
+}
+
+

@@ -1,0 +1,77 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<div class="mainTitle">
+    <div class="titleL">Detalle de vehículos</div>
+</div>
+
+<div class="content">
+
+    <!------------FILTERS------------>
+    <div class="divInputsRow">
+        
+        <div class="divInput">
+
+            <label for="vehicle" class="label1">Vehículo</label>
+            <input type="text" name="vehicle" class="input1 S" id="filterVehicle">
+
+        </div>
+
+        <div class="filterAction">
+            <i class="fa-solid fa-filter-circle-xmark filterIcon" id="unfilter"></i>
+        </div>
+
+    </div>
+
+    <div class="divTable">
+        <table>
+            <thead>
+                <tr>
+                    <th class="theadCss wL thLeftBorder thTall">Vehículo</th>
+
+                    <th class="theadCss wXL thTall">
+                        <div class="divThWithIcon">
+                            Fecha última localización                            
+                        </div>                        
+                    </th>
+
+                    <th class="theadCss wXL thTall">
+                        <div class="divThWithIcon">
+                            Último evento detectado
+                            <i class="fa-solid fa-arrow-up-9-1 theadIcon" id="orderDateAsc"></i>
+                            <i class="fa-solid fa-arrow-down-1-9  theadIcon notVisible" id="orderDateDesc"></i>
+                        </div>
+                    </th>
+                    
+                    <th class="theadCss wL thTall">Última localización</th>
+
+                    <th class="theadCss wXXS thRightBorder thTall"><i class="fa-solid fa-magnifying-glass-plus"></i></th>
+
+                </tr>
+            </thead>
+            <tbody id="vehiclesBody"></tbody>
+        </table>
+    </div>
+
+    <div class="infoPopup" id="locationInfo">
+
+        <div class="closePopup" id="closePopup">X</div>
+
+        <div class="titleS" id="vehicleName"></div>
+        <div class="videoSubtitle" id="vehicleLatLong"></div>
+
+        <div id="mapContainer">
+            <gmp-map center="-38.956430668857486, -68.072188518988" zoom="13" map-id="locationMap" id="gmpMap">
+                <gmp-advanced-marker position="-38.956430668857486, -68.072188518988" title="My location" id="gmpMapMarker"></gmp-advanced-marker>
+            </gmp-map>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<%- include('./eventsDetails') %>
+<script type="module" src="/js/vehicles.js"></script>
+

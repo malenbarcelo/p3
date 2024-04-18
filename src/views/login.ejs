@@ -1,0 +1,38 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<div class="mainTitle">
+    <div class="titleL">Iniciar sesión</div>
+</div>
+
+<div class="content">
+    <form action="/vehicles/vehicles-data" method="POST">
+
+        <div class="userData">
+
+            <div class="divInput">
+                <input type="text" name="userName" placeholder="Usuario" class="input1 wXXL pL <%= locals.errors && errors.userName ? 'isInvalid' : null %>" value="<%= locals.oldData ? oldData.userName : null %>" id="filterYear" autocomplete="off">
+                <div class="divError">
+                    <% if (locals.errors && errors.userName) { %>
+                        <%= errors.userName.msg %>
+                    <% } %>
+                </div>        
+            </div>
+
+            <div class="divInput">
+                <input type="password" name="password" placeholder="Contraseña" class="input1 wXXL pL <%= locals.errors && errors.password ? 'isInvalid' : null %>" autocomplete="off">
+                <div class="divError">
+                    <% if (locals.errors && errors.password) { %>
+                        <%= errors.password.msg %>
+                    <% } %>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="divButtonsRow">
+            <button type="submit" class="button1 wS pS">Ingresar</button>
+        </div>
+
+    </form>
+</div>

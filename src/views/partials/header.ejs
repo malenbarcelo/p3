@@ -1,0 +1,43 @@
+<div class="header">
+
+    <div class="topHeader">
+        
+        <div class="divCompanyLogo">
+            <img src="/images/companyLogo.jpg" alt="Schema" class="companyLogo">
+        </div>
+
+        <div class="divUserLogged">
+            <% if (locals.userLogged) { %>
+
+                <div class="userLogged">
+                    <i class="fa-regular fa-user iconUser"></i>
+                    <div class="userLoggedName">
+                        <%= userLogged.first_name + ' ' + userLogged.last_name %>
+                        <div class=""><a href="/logout" class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a></div>
+                    </div>
+                </div>
+
+            <% } %>
+        </div>
+
+    </div>
+
+    <div class="bottomHeader">
+
+            <div class="itemsMenu" id="itemsMenu1">
+                <a href="/vehicles/vehicles-data" class="subitemHeaderMenu">VEHÍCULOS</a>
+            </div>
+
+            <div class="itemsMenu" id="itemsMenu2">
+                <a href="/send-data/vehicles" class="subitemHeaderMenu">ENVIAR DATOS</a>
+            </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
