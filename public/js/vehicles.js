@@ -4,7 +4,7 @@ window.addEventListener('load',async()=>{
 
     //data
     const vehiclesData = await (await fetch(dominio + 'apis/vehicles-data')).json()
-    const detectedEvents = await (await fetch(dominio + 'apis/detected-events-data')).json()    
+    const detectedEvents = await (await fetch(dominio + 'apis/detected-events-data')).json()
 
     //elements
     const filterVehicle = document.getElementById('filterVehicle')
@@ -39,8 +39,8 @@ window.addEventListener('load',async()=>{
         }
 
         printTable(filteredData,detectedEvents)
-        
-    })   
+
+    })
 
     //////////////////////////////DELETE FILTERS EVENT LISTENERS//////////////////////////////
     unfilter.addEventListener('click',async()=>{
@@ -121,30 +121,30 @@ function printTable(dataToPrint,detectedEvents) {
 
     //printTable
     dataToPrint.forEach(element => {
-        
+
         const rowClass = counter % 2 == 0 ? 'tBody1 tBodyEven' : 'tBody1 tBodyOdd'
 
         //get last event detected full date
         let lastEventFullDate = 'Sin eventos detectados'
-        
+
         if (element.detectedEvents.length != 0) {
             const lastDetectedEventDate = element.detectedEvents.reduce((max, current) => (current.id > max.id ? current : max))
             const date = new Date(lastDetectedEventDate.start_date_time * 1000)
-            lastEventFullDate = getDateByFromTimestamp(date)            
+            lastEventFullDate = getDateByFromTimestamp(date)
         }
 
         //get last location full date
         const date = new Date(element.last_actualization * 1000)
-        const fullDate = getDateByFromTimestamp(date) 
+        const fullDate = getDateByFromTimestamp(date)
 
         //add magnifying glass only if there are detected events
         let magnifyingGlass = ''
         if (element.detectedEvents.length != 0) {
-            magnifyingGlass = '<i class="fa-solid fa-magnifying-glass-plus bodyIcon" id="events_' + element.id + '">'            
+            magnifyingGlass = '<i class="fa-solid fa-magnifying-glass-plus bodyIcon" id="events_' + element.id + '">'
         }
 
         //print table
-        const line1 = '<th class="' + rowClass + '">' + element.vehicle_code + '</th>'  
+        const line1 = '<th class="' + rowClass + '">' + element.vehicle_code + '</th>'
         const line3 = '<th class="' + rowClass + '">' + fullDate + '</th>'
         const line4 = '<th class="' + rowClass + '">' + lastEventFullDate + '</th>'
         const line5 = '<th class="' + rowClass + '"><i class="fa-solid fa-map-location-dot bodyIcon" id="location_' + element.id + '"></th>'
@@ -168,7 +168,7 @@ function printTable(dataToPrint,detectedEvents) {
         const location = document.getElementById('location_' + element.id)
         const events = document.getElementById('events_' + element.id)
         const eventsPopup = document.getElementById('eventsPopup')
-        
+
         //location info
         location.addEventListener('click',async()=>{
             const locationPosition = location.getBoundingClientRect()
@@ -183,7 +183,7 @@ function printTable(dataToPrint,detectedEvents) {
 
             vehicleName.innerText = 'Vehículo ' + element.vehicle_code
             vehicleLatLong.innerText = 'Lat,Long: ' + element.last_location_latitude + ',' + element.last_location_longitude
-            
+
             locationInfo.style.display = 'block'
 
         })
@@ -204,23 +204,48 @@ function printTable(dataToPrint,detectedEvents) {
 
                 //print cards
                 vehicleEvents.forEach(event => {
-                    
+
                     //get event date
                     const date = new Date(event.start_date_time * 1000)
                     const eventDate = getDateByFromTimestamp(date)
 
                     const line1 = '<div class="eventCard">'
+
+                    //div cards
                     const line2 = '<div class="cardData"><b>EVENTO: </b>' + event.event + '</div>'
                     const line3 = '<div class="cardData"><b>FECHA: </b>' + eventDate + '</div>'
-                    const line6 = '<div class="cardIcons">'
-                    const line7 = '<div><i class="fa-solid fa-location-dot cardIcon" id="cardIconLocation_' + event.id +'"></i></div>'
-                    const line8 = '<div><i class="fa-regular fa-eye cardIcon" id="cardIconEye_' + event.id +'"></i></div>'
-                    const line9 = '<div><a href="/events/download-video/' + event.video + '"><i class="fa-solid fa-download cardIcon" id="cardIconDownload_' + event.id +'"></i></a></div>'
-                    const line10 = '</div></div>'
+                    const line4 = '<div class="cardData"><b>SCORE: </b>' + 'xxxx' + '</div>'
+                    const line5 = '<div class="cardData"><b>PASOS: </b></div>'
 
-                    const cardHTML = line1 + line2 + line3 + line6 + line7 + line8 + line9 + line10
+                        //card icons
+                        const line6 = '<div class="cardIcons">'
+                        const line7 = '<div><i class="fa-solid fa-location-dot cardIcon" id="cardIconLocation_' + event.id +'"></i></div>'
+                        const line8 = '<div><i class="fa-regular fa-eye cardIcon" id="cardIconEye_' + event.id +'"></i></div>'
+                        const line9 = '<div><a href="/events/download-video/' + event.video + '"><i class="fa-solid fa-download cardIcon" id="cardIconDownload_' + event.id +'"></i></a></div>'
+                        const line10 = '</div>'
+
+                        //steps
+                        const line11 = '<div class=divSteps>'
+                        let line12 = ''
+                        event.steps.forEach(step => {
+
+                            const date = new Date(step.start_date_time * 1000)
+                            const stepDate = getDateByFromTimestamp(date)
+
+                            line12 += '<div class=divStepData>'
+                            line12 += '<div class="divStep"><b>' + step.step + ':</b></div>'
+                            line12 += '<div class="divDate">' + stepDate + '</div>'
+                            line12 += '<div class="divSpeed">' + step.speed + ' km/h</div>'
+                            line12 += '</div>'
+                        })
+                        line12 += '</div>'
+
+
+                    const line13 = '</div>'
+
+                    const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10 + line11 + line12 + line13
                     eventsCards.innerHTML += cardHTML
-                    
+
                 })
 
                 //add event listeners
@@ -229,11 +254,11 @@ function printTable(dataToPrint,detectedEvents) {
                     const cardIconEye = document.getElementById('cardIconEye_' + event.id)
                     const cardIconDownload = document.getElementById('cardIconDownload_' + event.id)
                     const eventVideo = document.getElementById('eventVideo')
-                    const eventLocation = document.getElementById('eventLocation')                   
+                    const eventLocation = document.getElementById('eventLocation')
 
                     cardIconEye.addEventListener('click',async()=>{
-                        const divVideo = document.getElementById('divVideo')                        
-                        const vehicleCode = document.getElementById('vehicleCode')                        
+                        const divVideo = document.getElementById('divVideo')
+                        const vehicleCode = document.getElementById('vehicleCode')
                         const eventDate = document.getElementById('eventDate')
                         const locationPosition = cardIconEye.getBoundingClientRect()
                         eventVideo.style.left = `${locationPosition.left - 430}px`
@@ -241,21 +266,41 @@ function printTable(dataToPrint,detectedEvents) {
 
                         const date = new Date(event.start_date_time * 1000)
                         const videoDate = getDateByFromTimestamp(date)
-                        
+
                         vehicleCode.innerText = event.event + ' - Vehículo ' + event.vehicle_code
                         eventDate.innerText = 'Fecha: ' + videoDate
 
                         //add video to div
-                        const line1 = '<video class="video" id="videoPlayer" controls>'
-                        const line2 = '<source src="/videos/' + event.video + '.mp4" type="video/mp4" id="videoName"></source>'
-                        const line3 = '</video>'
-                        divVideo.innerHTML = line1 + line2 + line3
 
-                        const videoPlayer = document.getElementById('videoPlayer')
-                        
-                        eventVideo.style.display = 'block'
+                        //findout if video exists
+                        $(document).ready(function() {
+                            const videoUrl = '/videos/' + event.video + '.mp4'
 
-                        videoPlayer.play()
+                            $.ajax({
+                                url: videoUrl,
+                                type: 'HEAD',
+                                success: function() {
+                                    const line1 = '<video class="video" id="videoPlayer" controls>'
+                                    const line2 = '<source src="/videos/' + event.video + '.mp4" type="video/mp4" id="videoName"></source>'
+                                    const line3 = '</video>'
+                                    divVideo.innerHTML = line1 + line2 + line3
+
+                                    const videoPlayer = document.getElementById('videoPlayer')
+
+                                    eventVideo.style.display = 'block'
+
+                                    videoPlayer.play()
+                                },
+                                error: function() {
+                                    const line1 = '<div class="noVideoIcon"><i class="fa-solid fa-video-slash"></i></div>'
+                                    const line2 = '<div class="noVideoText">Video o disponible</div>'
+                                    const line3 = ''
+                                    divVideo.innerHTML = line1 + line2 + line3
+                                    eventVideo.style.display = 'block'
+                                }
+                            })
+                        })
+
                     })
 
                     cardIconEye.addEventListener('mouseover',async()=>{
@@ -267,12 +312,12 @@ function printTable(dataToPrint,detectedEvents) {
                     })
 
                     cardIconEye.addEventListener('mouseout',async()=>{
-                        const viewVideoInfo = document.getElementById('viewVideoInfo')                        
+                        const viewVideoInfo = document.getElementById('viewVideoInfo')
                         viewVideoInfo.style.display = 'none'
                     })
 
                     cardIconLocation.addEventListener('click',async()=>{
-                        const eventVehicleCode = document.getElementById('eventVehicleCode')                        
+                        const eventVehicleCode = document.getElementById('eventVehicleCode')
                         const eventLatLong = document.getElementById('eventLatLong')
                         const locationPosition = cardIconEye.getBoundingClientRect()
                         eventLocation.style.left = `${locationPosition.left - 400}px`
@@ -286,7 +331,7 @@ function printTable(dataToPrint,detectedEvents) {
                         const gmpMapMarker2 = document.getElementById('gmpMapMarker2')
                         const latitude = parseFloat(event.start_location_latitude,20)
                         const longitude = parseFloat(event.start_location_longitude,20)
-                        const centerCoordinates = { lat: latitude, lng: longitude }                        
+                        const centerCoordinates = { lat: latitude, lng: longitude }
                         gmpMap2.center = centerCoordinates
                         gmpMapMarker2.position = centerCoordinates
 
@@ -302,7 +347,7 @@ function printTable(dataToPrint,detectedEvents) {
                     })
 
                     cardIconLocation.addEventListener('mouseout',async()=>{
-                        const viewMapInfo = document.getElementById('viewMapInfo')                        
+                        const viewMapInfo = document.getElementById('viewMapInfo')
                         viewMapInfo.style.display = 'none'
                     })
 
@@ -315,20 +360,20 @@ function printTable(dataToPrint,detectedEvents) {
                     })
 
                     cardIconDownload.addEventListener('mouseout',async()=>{
-                        const downloadVideoInfo = document.getElementById('downloadVideoInfo')                        
+                        const downloadVideoInfo = document.getElementById('downloadVideoInfo')
                         downloadVideoInfo.style.display = 'none'
                     })
-                    
+
 
 
                 })
-                
+
                 //show popup
                 eventsPopup.classList.add('slideIn')
             })
-            
+
         }
-        
+
     })
 }
 
@@ -348,7 +393,7 @@ function getDateByFromTimestamp(date) {
     hours = hours < 10 ? "0" + hours : hours
     minutes = minutes < 10 ? "0" + minutes : minutes
     seconds = seconds < 10 ? "0" + seconds : seconds
-    
+
     const fullDate = day + "-" + month + "-" + year +' ' + hours + ":" + minutes + ":" + seconds
 
     return fullDate

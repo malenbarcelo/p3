@@ -48,6 +48,7 @@ CREATE TABLE pr3_db.detected_events (
     start_location_latitude VARCHAR(100) NOT NULL,
     start_location_longitude VARCHAR(100) NOT NULL,
     event_duration_seconds INT NOT NULL,
+    score DECIMAL(4,3) NOT NULL,
     video VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
 );

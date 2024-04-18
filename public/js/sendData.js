@@ -33,6 +33,7 @@ window.addEventListener('load',async()=>{
         const longitude = document.getElementById('eventLongitude').value
         const datetime = document.getElementById('eventDatetime').value
         const duration = document.getElementById('duration').value
+        const score = document.getElementById('score').value
         const step1 = document.getElementById('step1').value
         const stepLatitude1 = document.getElementById('stepLatitude1').value
         const stepLongitude1 = document.getElementById('stepLongitude1').value
@@ -81,8 +82,11 @@ window.addEventListener('load',async()=>{
             'start_location_latitude':latitude,
             'start_location_longitude':longitude,
             'event_duration_seconds':duration,
+            'score':score,
             'steps_data':stepsData
         }
+
+        console.log(data)
 
         await fetch(dominio + 'apis/send-events',{
             method:'POST',

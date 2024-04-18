@@ -29,11 +29,12 @@
     align-items: center;
     row-gap: 20px;
     margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 .eventCard{
     background-color: var(--color5);
-    width: 90%;
+    width: 75%;
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -74,8 +75,47 @@
     height: 200px;
 }
 
+.noVideoIcon{
+    font-size: 50px;
+    color: rgb(148, 147, 147);
+}
+
+.noVideoText{
+    font-size: 15px;
+    color: rgb(148, 147, 147);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 #eventVideo{
     width: 400px;
+}
+
+/*event card steps*/
+.divSteps{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 5%;
+}
+
+.divStepData{
+    padding: 5px;
+    display: flex;
+
+}
+.divStep{
+    width: 120px;
+}
+
+.divDate{
+    width: 180px;
+    text-align: center;
+}
+
+.divSpeed{
+    width: 100px;
+    text-align: center;
 }
 
 

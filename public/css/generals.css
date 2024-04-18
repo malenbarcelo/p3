@@ -337,6 +337,10 @@ border-top-right-radius: 15px;
     width: 1000px;
 }
 
+.sidePM{
+    width: 800px;
+}
+
 .sidePtitle{
     margin-top: 40px;
 }
@@ -380,7 +384,7 @@ border-top-right-radius: 15px;
     padding: 2px 5px;
     position: absolute;
     background-color: var(--color3);
-    font-size: 12   px;
+    font-size: 12px;
     border-radius: 3px;
     color: var(--color2);
 }

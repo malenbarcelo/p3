@@ -37,6 +37,7 @@ const detectedEventsQueries = {
             start_location_latitude:data.start_location_latitude,
             start_location_longitude:data.start_location_longitude,
             event_duration_seconds:data.event_duration_seconds,
+            score:data.score,
             video: data.vehicle_code + '_' + data.start_date_time
         })
     },

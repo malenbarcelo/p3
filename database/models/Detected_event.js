@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
          type: DataTypes.INTEGER,
          allowNull: false,
        },
+       score:{
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+      },
        video:{
          type: DataTypes.STRING,
          allowNull: false,
