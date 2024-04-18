@@ -2,7 +2,7 @@ module.exports =
   {
     "development": {
       "username": "p3wnpower_userp3",
-      "password": "mdatabaseP3Userultibrandcomex",
+      "password": "databaseP3User",
       "database": "p3wnpower_db",
       "host": "127.0.0.1",
       "dialect": "mysql"
