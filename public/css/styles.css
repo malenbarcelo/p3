@@ -32,32 +32,41 @@
     margin-bottom: 30px;
 }
 
+.cardEventDataAndIcons{
+    display: flex;
+    justify-content: space-between;
+}
+
 .eventCard{
     background-color: var(--color5);
-    width: 75%;
+    width: 85%;
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    padding: 15px 10px 15px 20px;
     font-size: 14px;
     position: relative;
 }
 
-.cardData{
-    margin-bottom: 10px;
+.cardEventData{
+    column-gap: 20px;
+    display: flex;
+    align-items: center;
+
 }
 
 .cardIcons{
     display: flex;
     column-gap: 15px;
-    position: absolute;
-    top: 18px;
-    right: 20px;
     font-size: 17px;
     color: var(--color3);
 }
 
 .cardIcon{
     cursor: pointer;
+}
+
+.cardSteps{
+    margin-top: 10px;
 }
 
 .videoSubtitle{
@@ -116,6 +125,19 @@
 .divSpeed{
     width: 100px;
     text-align: center;
+}
+
+.relativeDiv{
+    position: relative;
+}
+
+.divCheckbox{
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    position: absolute;
+    right: 70px;
+    bottom: -18px;
 }
 
 

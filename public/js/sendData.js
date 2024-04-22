@@ -86,8 +86,6 @@ window.addEventListener('load',async()=>{
             'steps_data':stepsData
         }
 
-        console.log(data)
-
         await fetch(dominio + 'apis/send-events',{
             method:'POST',
             headers: {'Content-Type': 'application/json'},

@@ -53,6 +53,5 @@ app.use('/events',eventsRoutes)
 app.use('/send-data',sendDataRoutes)
 
 
-/*console.log('jaime: ' + bcrypt.hashSync('jbarcelo',10))
-console.log('malen: ' + bcrypt.hashSync('mbarcelo',10))
-console.log('tomas: ' + bcrypt.hashSync('tallegri',10))*/
+/*console.log('malen: ' + bcrypt.hashSync('malen',10))
+console.log('fran: ' + bcrypt.hashSync('francisco',10))*/

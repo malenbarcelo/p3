@@ -46,9 +46,11 @@ const apisController = {
       }else{
         //update vehicle data
         await vehiclesQueries.updateVehicleData(data)
-      }
+      }      
+      
+      res.status(200).json( )
 
-      res.status(200).json()
+      console.log("Datos enviados correctamente")
 
     }catch(error){
       console.group(error)
@@ -69,10 +71,11 @@ const apisController = {
       const eventId = detectedEventData.id
 
       //carete detected_events_steps
-      console.log(data.steps_data)
       await detectedEventsQueries.createDetectedEventSteps(data.steps_data,eventId)
 
       res.status(200).json()
+
+      console.log("Datos enviados correctamente")
 
     }catch(error){
       console.group(error)

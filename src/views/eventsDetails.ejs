@@ -1,5 +1,6 @@
-<div class="sidePopup sidePM" id="eventsPopup">
+<div class="sidePopup sidePXL" id="eventsPopup">
 
+    <div class="notVisible" id="vehicleCode"></div>
     
     <div class="divClosePopup">
         <div class="closeSidePopup" id="closeSidePopup">X</div>
@@ -8,6 +9,24 @@
     <div class="titleL sidePtitle" id="title">Detalle de eventos</div>
 
     <div class="titleM sidePsubtitle" id="vehicleTitle"></div>
+
+    <div class="divInputsRow mtL relativeDiv">
+        
+        <div class="divInput">
+            <label for="item" class="label1">Fecha</label>
+            <input type="date" name="item" class="input1 wM" id="filterDate">
+        </div>
+
+        <div class="filterIcon">
+            <i class="fa-solid fa-filter-circle-xmark" id="unfilterDate"></i>
+        </div>
+
+        <div class="divCheckbox">
+            <input type="checkbox" id="showAllSteps">
+            <label for="mostrarDetalles">Mostrar detalles</label>
+        </div>
+
+    </div>
 
     <div id="eventsCards"></div>
 
@@ -42,6 +61,14 @@
 
     <div class="showActionPopup" id="downloadVideoInfo">
         <div>Descargar video</div>
+    </div>
+
+    <div class="showActionPopup" id="showDetailsInfo">
+        <div>Mostrar pasos</div>
+    </div>
+
+    <div class="showActionPopup" id="hideDetailsInfo">
+        <div>Ocultar pasos</div>
     </div>
 
 </div>
