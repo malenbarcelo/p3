@@ -386,6 +386,20 @@ border-top-right-radius: 15px;
     font-size: 12px;
     border-radius: 3px;
     color: var(--color2);
+    top:40px;
+}
+
+.pos1{    
+    right:10%;
+}
+.pos2{    
+    right:6%;
+}
+.pos3{    
+    right:0%;
+}
+.pos4{    
+    right:-3%;
 }
 
 .closePopup{

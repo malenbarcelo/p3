@@ -65,6 +65,11 @@
     cursor: pointer;
 }
 
+.notVideoFound{
+    color: grey;
+    cursor: auto;
+}
+
 .cardSteps{
     margin-top: 10px;
 }

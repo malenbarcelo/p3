@@ -23,6 +23,7 @@ router.get('/detected-events-data',apisController.allDetectedEvents)
 router.post('/send-vehicle-data',apisController.sendVehicleData)
 router.post('/send-events',apisController.sendEvents)
 router.post('/upload-video', upload.single('video'),apisController.saveVideo)
+router.get('/all-videos',apisController.getVideos)
 
 module.exports = router
 

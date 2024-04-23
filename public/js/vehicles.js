@@ -75,7 +75,7 @@ window.addEventListener('load',async()=>{
         
 
         //print cards
-        printCards(vehicleEventsFiltered)
+        await printCards(vehicleEventsFiltered)
 
     })
 
@@ -95,7 +95,7 @@ window.addEventListener('load',async()=>{
         //get vehicle events
         const vehicleEvents = detectedEvents.filter(event => event.vehicle_code == vehicleCode)
         //print cards
-        printCards(vehicleEvents)
+        await printCards(vehicleEvents)
         filterDate.value = ''
         
     })

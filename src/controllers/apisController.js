@@ -2,6 +2,8 @@ const db = require('../../database/models')
 const sequelize = require('sequelize')
 const vehiclesQueries = require('./dbQueries/vehiclesQueries')
 const detectedEventsQueries = require('./dbQueries/detectedEventsQueries')
+const fs = require('fs')
+const util = require('util')
 
 const apisController = {
   allVehicles: async(req,res) =>{
@@ -89,6 +91,26 @@ const apisController = {
       data.video = req.file.filename
 
       res.status(200).json({ message: 'Video cargado exitosamente', filename: req.file.filename })
+
+    }catch(error){
+      console.group(error)
+      return res.send('Ha ocurrido un error')
+    }
+  },
+  getVideos: async(req,res) =>{
+    try{
+
+      const folder = './public/videos'
+      const videos = []
+      
+      const readdirAsync = util.promisify(fs.readdir)
+      const files = await readdirAsync(folder)
+      
+      files.forEach(file => {
+        videos.push({ 'video': file })
+      })    
+
+      res.status(200).json(videos)
 
     }catch(error){
       console.group(error)

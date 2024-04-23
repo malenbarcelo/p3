@@ -1,3 +1,5 @@
+import { dominio } from "../dominio.js"
+
 function printTable(dataToPrint,detectedEvents) {
 
     const body = document.getElementById('vehiclesBody')
@@ -82,8 +84,13 @@ function printTable(dataToPrint,detectedEvents) {
                 const vehicleTitle = document.getElementById('vehicleTitle')
                 const eventsCards = document.getElementById('eventsCards')
                 const vehicleCode = document.getElementById('vehicleCode')
+                const showAllSteps = document.getElementById('showAllSteps')
+                
                 eventsCards.innerHTML = ''
 
+                //unckeck show steps
+                showAllSteps.checked = false
+                
                 //popup title
                 vehicleTitle.innerText = 'Vehículo ' + element.vehicle_code
 
@@ -91,7 +98,7 @@ function printTable(dataToPrint,detectedEvents) {
                 const vehicleEvents = detectedEvents.filter(event => event.vehicle_code == element.vehicle_code)
 
                 //print cards
-                printCards(vehicleEvents)
+                await printCards(vehicleEvents)
 
                 //show and hide popup
                 vehicleCode.innerText = element.vehicle_code
@@ -104,22 +111,33 @@ function printTable(dataToPrint,detectedEvents) {
     })
 }
 
-function printCards(cardsToPrint) {
+async function printCards(cardsToPrint) {
 
+    const videos = await (await fetch(dominio + 'apis/all-videos')).json()
     const showAllSteps = document.getElementById('showAllSteps')
+
     showAllSteps.addEventListener('click',async()=>{
         if (showAllSteps.checked) {
             for (let i = 0; i < cardsToPrint.length; i++) {
                 const cardSteps = document.getElementById('cardSteps_' + cardsToPrint[i].id)
+                const hideDetails = document.getElementById('hideDetails_' + cardsToPrint[i].id)
+                const showDetails = document.getElementById('showDetails_' + cardsToPrint[i].id)
+                
                 if (cardSteps != null) {
                     cardSteps.classList.remove('notVisible')
+                    hideDetails.style.display = 'block'
+                    showDetails.style.display = 'none'
                 }
             }
         }else{
             for (let i = 0; i < cardsToPrint.length; i++) {
                 const cardSteps = document.getElementById('cardSteps_' + cardsToPrint[i].id)
+                const hideDetails = document.getElementById('hideDetails_' + cardsToPrint[i].id)
+                const showDetails = document.getElementById('showDetails_' + cardsToPrint[i].id)
                 if (cardSteps != null) {
                     cardSteps.classList.add('notVisible')
+                    hideDetails.style.display = 'none'
+                    showDetails.style.display = 'block'
                 }
             }
 
@@ -128,6 +146,14 @@ function printCards(cardsToPrint) {
 
     //print cards
     cardsToPrint.forEach(event => {
+
+        //findout if video exists
+        let findVideo
+        if (videos.filter(video => video.video == (event.video + '.mp4')).length > 0) {
+            findVideo = 1
+        }else{
+            findVideo = 0
+        }
 
         //get event date
         const date = new Date(event.start_date_time * 1000)
@@ -147,8 +173,15 @@ function printCards(cardsToPrint) {
         //card icons
         const line9 = '<div class="cardIcons">'
         const line10 = '<div><i class="fa-solid fa-location-dot cardIcon" id="cardIconLocation_' + event.id +'"></i></div>'
-        const line11 = '<div><i class="fa-regular fa-eye cardIcon" id="cardIconEye_' + event.id +'"></i></div>'
-        const line12 = '<div><a href="/events/download-video/' + event.video + '"><i class="fa-solid fa-download cardIcon" id="cardIconDownload_' + event.id +'"></i></a></div>'
+        const line11 = '<div><i class="fa-regular fa-eye cardIcon" id="cardIconEye_' + event.id +'"></i></div>'        
+        
+        let line12
+        if (findVideo == 1) {
+            line12 = '<div><a href="/events/download-video/' + event.video + '"><i class="fa-solid fa-download cardIcon" id="cardIconDownload_' + event.id +'"></i></a></div>'
+        }else{
+            line12 = '<div><i class="fa-solid fa-download cardIcon notVideoFound" id="cardIconDownload_' + event.id +'"></i></div>'
+        }         
+        
         const line13 = '<div><div><i class="fa-solid fa-chevron-down cardIcon" id="showDetails_' + event.id +'"></i></div>'
         const line14 = '<div><i class="fa-solid fa-chevron-up cardIcon" id="hideDetails_' + event.id +'"></i></div></div>'
         const line15 = '</div>'
@@ -175,9 +208,14 @@ function printCards(cardsToPrint) {
             line20 += '</div>'
 
         const line21 = '</div>'
-        const line22 = '</div>'
+        const line22 = '<div class="showActionPopup pos1" id="viewMapInfo_' + event.id + '">Ver mapa</div>'
+        const line23 = '<div class="showActionPopup pos2" id="viewVideoInfo_' + event.id + '">Ver video</div>'
+        const line24 = '<div class="showActionPopup pos3" id="downloadVideoInfo_' + event.id + '">Descargar video</div>'
+        const line25 = '<div class="showActionPopup pos4" id="showDetailsInfo_' + event.id + '">Mostrar detalles</div>'
+        const line26 = '<div class="showActionPopup pos4" id="hideDetailsInfo_' + event.id + '">Ocultar detalles</div>'
+        const line27 = '</div>'
 
-        const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10 + line11 + line12 + line13 + line14 + line15 + line16 + line17 + line18 + line19 + line20 + line21 + line22
+        const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10 + line11 + line12 + line13 + line14 + line15 + line16 + line17 + line18 + line19 + line20 + line21 + line22 + line23 + line24 + line25 + line26 + line27
         eventsCards.innerHTML += cardHTML
 
     })
@@ -202,39 +240,35 @@ function printCards(cardsToPrint) {
         })
 
         showDetails.addEventListener('mouseover',async()=>{
-            const showDetailsInfo = document.getElementById('showDetailsInfo')
-            const locationPosition = cardIconEye.getBoundingClientRect()
-            showDetailsInfo.style.left = `${locationPosition.left + 25}px`
-            showDetailsInfo.style.top = `${locationPosition.top + 20}px`
+            const showDetailsInfo = document.getElementById('showDetailsInfo_' + event.id)
             showDetailsInfo.style.display = 'block'
         })
 
         showDetails.addEventListener('mouseout',async()=>{
-            const showDetailsInfo = document.getElementById('showDetailsInfo')
+            const showDetailsInfo = document.getElementById('showDetailsInfo_' + event.id)
             showDetailsInfo.style.display = 'none'
         })
 
         hideDetails.addEventListener('click',async()=>{
+            const showAllSteps = document.getElementById('showAllSteps')
+            showAllSteps.checked = false
             hideDetails.style.display = 'none'
             showDetails.style.display = 'block'
             cardSteps.classList.add('notVisible')                        
         })
 
         hideDetails.addEventListener('mouseover',async()=>{
-            const hideDetailsInfo = document.getElementById('hideDetailsInfo')
-            const locationPosition = cardIconEye.getBoundingClientRect()
-            hideDetailsInfo.style.left = `${locationPosition.left + 25}px`
-            hideDetailsInfo.style.top = `${locationPosition.top + 20}px`
+            const hideDetailsInfo = document.getElementById('hideDetailsInfo_' + event.id)
             hideDetailsInfo.style.display = 'block'
         })
 
         hideDetails.addEventListener('mouseout',async()=>{
-            const hideDetailsInfo = document.getElementById('hideDetailsInfo')
+            const hideDetailsInfo = document.getElementById('hideDetailsInfo_' + event.id)
             hideDetailsInfo.style.display = 'none'
         })
 
-
         cardIconEye.addEventListener('click',async()=>{
+            
             const divVideo = document.getElementById('divVideo')
             const vehicleCode = document.getElementById('vehicleCode')
             const eventDate = document.getElementById('eventDate')
@@ -248,9 +282,7 @@ function printCards(cardsToPrint) {
             vehicleCode.innerText = event.event + ' - Vehículo ' + event.vehicle_code
             eventDate.innerText = 'Fecha: ' + videoDate
 
-            //add video to div
-
-            //findout if video exists
+            //add video to div            
             $(document).ready(function() {
                 const videoUrl = '/videos/' + event.video + '.mp4'
 
@@ -285,15 +317,12 @@ function printCards(cardsToPrint) {
         })
 
         cardIconEye.addEventListener('mouseover',async()=>{
-            const viewVideoInfo = document.getElementById('viewVideoInfo')
-            const locationPosition = cardIconEye.getBoundingClientRect()
-            viewVideoInfo.style.left = `${locationPosition.left - 20}px`
-            viewVideoInfo.style.top = `${locationPosition.top + 20}px`
+            const viewVideoInfo = document.getElementById('viewVideoInfo_' + event.id)
             viewVideoInfo.style.display = 'block'
         })
 
         cardIconEye.addEventListener('mouseout',async()=>{
-            const viewVideoInfo = document.getElementById('viewVideoInfo')
+            const viewVideoInfo = document.getElementById('viewVideoInfo_' + event.id)
             viewVideoInfo.style.display = 'none'
         })
 
@@ -321,15 +350,12 @@ function printCards(cardsToPrint) {
         })
 
         cardIconLocation.addEventListener('mouseover',async()=>{
-            const viewMapInfo = document.getElementById('viewMapInfo')
-            const locationPosition = cardIconEye.getBoundingClientRect()
-            viewMapInfo.style.left = `${locationPosition.left - 50}px`
-            viewMapInfo.style.top = `${locationPosition.top + 20}px`
+            const viewMapInfo = document.getElementById('viewMapInfo_' + event.id)
             viewMapInfo.style.display = 'block'
         })
 
         cardIconLocation.addEventListener('mouseout',async()=>{
-            const viewMapInfo = document.getElementById('viewMapInfo')
+            const viewMapInfo = document.getElementById('viewMapInfo_' + event.id)
             viewMapInfo.style.display = 'none'
         })
 
@@ -340,16 +366,18 @@ function printCards(cardsToPrint) {
         })
 
         cardIconDownload.addEventListener('mouseover',async()=>{
-            const downloadVideoInfo = document.getElementById('downloadVideoInfo')
-            const locationPosition = cardIconEye.getBoundingClientRect()
-            downloadVideoInfo.style.left = `${locationPosition.left - 8}px`
-            downloadVideoInfo.style.top = `${locationPosition.top + 20}px`
-            downloadVideoInfo.style.display = 'block'
+            
+            const findVideo = videos.filter(video => video.video == event.video + '.mp4')
+            
+            if (findVideo.length > 0) {
+                const dowloadVideoInfo = document.getElementById('downloadVideoInfo_' + event.id)
+                dowloadVideoInfo.style.display = 'block'
+            }
         })
 
         cardIconDownload.addEventListener('mouseout',async()=>{
-            const downloadVideoInfo = document.getElementById('downloadVideoInfo')
-            downloadVideoInfo.style.display = 'none'
+            const dowloadVideoInfo = document.getElementById('downloadVideoInfo_' + event.id)
+            dowloadVideoInfo.style.display = 'none'
         })
     })
     
@@ -376,5 +404,7 @@ function getDateByFromTimestamp(date) {
 
     return fullDate
 }
+
+
 
 export {printTable,printCards,getDateByFromTimestamp}
