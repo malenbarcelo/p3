@@ -376,6 +376,7 @@ border-top-right-radius: 15px;
     border: var(--color1) solid 2px;
     position: absolute;
     background-color: var(--color2);
+    z-index: 1;
 }
 
 .showActionPopup{

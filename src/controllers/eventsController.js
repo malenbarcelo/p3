@@ -17,7 +17,7 @@ const eventsController = {
             const videoName = req.params.videoName;
             var videoPath = path.resolve('./public/videos/' + videoName + '.mp4')
 
-            res.download(videoPath, videoName)
+            res.download(videoPath, videoName + '.mp4')
 
         }catch(error){
             console.log(error)

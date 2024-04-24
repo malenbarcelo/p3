@@ -21,10 +21,6 @@ window.addEventListener('load',async()=>{
     const filterDate = document.getElementById('filterDate')
     const unfilterDate = document.getElementById('unfilterDate')
 
-    //events data popups
-    const closeEventVideo = document.getElementById('closeEventVideo')
-    const closeEventLocation = document.getElementById('closeEventLocation')
-
     //print vehicles data
     printTable(vehiclesData,detectedEvents)
 
@@ -148,19 +144,6 @@ window.addEventListener('load',async()=>{
     closeSidePopup.addEventListener('click',async()=>{
         const eventsPopup = document.getElementById('eventsPopup')
         eventsPopup.classList.remove('slideIn')
-
-        eventVideo.style.display = 'none'
-        eventLocation.style.display = 'none'
-    })
-
-    closeEventVideo.addEventListener('click',async()=>{
-        const eventVideo = document.getElementById('eventVideo')
-        eventVideo.style.display = 'none'
-    })
-
-    closeEventLocation.addEventListener('click',async()=>{
-        const eventLocation = document.getElementById('eventLocation')
-        eventLocation.style.display = 'none'
     })
 
 })

@@ -102,6 +102,8 @@ function printTable(dataToPrint,detectedEvents) {
 
                 //show and hide popup
                 vehicleCode.innerText = element.vehicle_code
+                eventVideo.style.display = 'none'
+                eventLocation.style.display = 'none'
                 locationInfo.style.display = 'none'
                 eventsPopup.classList.add('slideIn')
             })
@@ -214,27 +216,17 @@ async function printCards(cardsToPrint) {
         const line25 = '<div class="showActionPopup pos4" id="showDetailsInfo_' + event.id + '">Mostrar detalles</div>'
         const line26 = '<div class="showActionPopup pos4" id="hideDetailsInfo_' + event.id + '">Ocultar detalles</div>'
 
-        //video popup       
-        const line27 = '<div class="infoPopup eventVideo" id="eventVideo_' + event.id + '">'
-        const line28 = '<div class="closePopup" id="closeEventVideo_' + event.id + '">X</div>'
-        const line29 = '<div class="titleS" id="vehicleCode_' + event.id + '">' + event.event + ' - Vehículo ' + event.vehicle_code + '</div>'        
-        const line30 = '<div class="videoSubtitle" id="eventDate_' + event.id + '">' + 'Fecha: ' + eventDate + '</div>'
-        const line31 = '<div class="divVideo" id="divVideo_' + event.id + '"></div>'
+        //video popup
+        const line27 = '<div class="infoPopup" id="eventVideo_"' + event.id + '>'
+        const line28 = '<div class="closePopup" id="closeEventVideo_"' + event.id + '>X</div>'
+        const line29 = '<div class="titleS" id="vehicleCode_"' + event.id + '></div>'        
+        const line30 = '<div class="videoSubtitle" id="eventDate_"' + event.id + '></div>'
+        const line31 = '<div class="divVideo" id="divVideo_"' + event.id + '></div>'
         const line32 = '</div>'
 
-        //location popup
-        const line33 = '<div class="infoPopup eventLocation" id="eventLocation_' + event.id + '">'
-        const line34 = '<div class="closePopup" id="closeEventLocation_' + event.id + '">X</div>'
-        const line35 = '<div class="titleS" id="eventVehicleCode_' + event.id + '">' + 'Vehículo ' + event.vehicle_code + '</div>'        
-        const line36 = '<div class="videoSubtitle" id="eventLatLong_' + event.id + '">' + 'Lat,Long: ' + event.start_location_latitude + ',' + event.start_location_longitude + '</div>'
-        const line37 = '<div class="eventLocationContainer" id="eventLocationContainer_' + event.id + '">'
-        const line38 = '</div>'
-        const line39 = '</div>'
+        const line33 = '</div>'
 
-        //end
-        const line40 = '</div>'
-
-        const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10 + line11 + line12 + line13 + line14 + line15 + line16 + line17 + line18 + line19 + line20 + line21 + line22 + line23 + line24 + line25 + line26 + line27 + line28 + line29 + line30 + line31 + line32 + line33 + line34 + line35 + line36 + line37 + line38 + line39 + line40
+        const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10 + line11 + line12 + line13 + line14 + line15 + line16 + line17 + line18 + line19 + line20 + line21 + line22 + line23 + line24 + line25 + line26 + line27 + line28 + line29 + line30 + line31 + line32 + line33
         eventsCards.innerHTML += cardHTML
 
     })
@@ -248,51 +240,55 @@ async function printCards(cardsToPrint) {
         const hideDetails = document.getElementById('hideDetails_' + event.id)
         const cardSteps = document.getElementById('cardSteps_' + event.id)
         const eventVideo = document.getElementById('eventVideo_' + event.id)
-        const eventLocation = document.getElementById('eventLocation_' + event.id)
-        const closeEventVideo = document.getElementById('closeEventVideo_' + event.id)
-        const closeEventLocation = document.getElementById('closeEventLocation_' + event.id)
+        const eventLocation = document.getElementById('eventLocation')
 
         hideDetails.style.display = 'none'
 
-        cardIconLocation.addEventListener('click',async()=>{
-
-            const eventLocationContainer = document.getElementById('eventLocationContainer_' + event.id)
-
-            const line1 = '<gmp-map center="0, 0" zoom="13" map-id="locationMap_' + event.id +'" id="gmpMap2_' + event.id + '">'
-            const line2 = '<gmp-advanced-marker position="0, 0" title="My location" id="gmpMapMarker2_' + event.id + '"></gmp-advanced-marker>'
-            const line3 = '</gmp-map>'
-
-            eventLocationContainer.innerHTML = line1 + line2 + line3
-
-            //add map to div
-            const gmpMap2 = document.getElementById('gmpMap2_' + event.id)
-            const gmpMapMarker2 = document.getElementById('gmpMapMarker2_' + event.id)
-            const latitude = parseFloat(event.start_location_latitude,20)
-            const longitude = parseFloat(event.start_location_longitude,20)
-            const centerCoordinates = { lat: latitude, lng: longitude }
-            gmpMap2.center = centerCoordinates
-            gmpMapMarker2.position = centerCoordinates
-
-            closePopups(cardsToPrint,eventLocation)
+        showDetails.addEventListener('click',async()=>{
+            showDetails.style.display = 'none'
+            hideDetails.style.display = 'block'
+            cardSteps.classList.remove('notVisible')
         })
 
-        closeEventLocation.addEventListener('click',async()=>{
-            const eventLocationContainer = document.getElementById('eventLocationContainer_' + event.id)
-            eventLocationContainer.innerHTML = ''
-            eventLocation.style.display = 'none'
+        showDetails.addEventListener('mouseover',async()=>{
+            const showDetailsInfo = document.getElementById('showDetailsInfo_' + event.id)
+            showDetailsInfo.style.display = 'block'
         })
 
-        closeEventVideo.addEventListener('click',async()=>{
-            const divVideo = document.getElementById('divVideo_' + event.id)
-            divVideo.innerHTML = ''
-            eventVideo.style.display = 'none'
+        showDetails.addEventListener('mouseout',async()=>{
+            const showDetailsInfo = document.getElementById('showDetailsInfo_' + event.id)
+            showDetailsInfo.style.display = 'none'
+        })
+
+        hideDetails.addEventListener('click',async()=>{
+            const showAllSteps = document.getElementById('showAllSteps')
+            showAllSteps.checked = false
+            hideDetails.style.display = 'none'
+            showDetails.style.display = 'block'
+            cardSteps.classList.add('notVisible')                        
+        })
+
+        hideDetails.addEventListener('mouseover',async()=>{
+            const hideDetailsInfo = document.getElementById('hideDetailsInfo_' + event.id)
+            hideDetailsInfo.style.display = 'block'
+        })
+
+        hideDetails.addEventListener('mouseout',async()=>{
+            const hideDetailsInfo = document.getElementById('hideDetailsInfo_' + event.id)
+            hideDetailsInfo.style.display = 'none'
         })
 
         cardIconEye.addEventListener('click',async()=>{
-
+            
             const divVideo = document.getElementById('divVideo_' + event.id)
+            const vehicleCode = document.getElementById('vehicleCode_' + event.id)
+            const eventDate = document.getElementById('eventDate_' + event.id)
 
-            closePopups(cardsToPrint,eventVideo)
+            const date = new Date(event.start_date_time * 1000)
+            const videoDate = getDateByFromTimestamp(date)
+
+            vehicleCode.innerText = event.event + ' - Vehículo ' + event.vehicle_code
+            eventDate.innerText = 'Fecha: ' + videoDate
 
             //add video to div            
             $(document).ready(function() {
@@ -338,42 +334,28 @@ async function printCards(cardsToPrint) {
             viewVideoInfo.style.display = 'none'
         })
 
+        cardIconLocation.addEventListener('click',async()=>{
+            const eventVehicleCode = document.getElementById('eventVehicleCode')
+            const eventLatLong = document.getElementById('eventLatLong')
+            const locationPosition = cardIconEye.getBoundingClientRect()
+            eventLocation.style.left = `${locationPosition.left - 400}px`
+            eventLocation.style.top = `${locationPosition.top}px`
 
-        showDetails.addEventListener('click',async()=>{
-            showDetails.style.display = 'none'
-            hideDetails.style.display = 'block'
-            cardSteps.classList.remove('notVisible')
+            eventVehicleCode.innerText = 'Vehículo ' + event.vehicle_code
+            eventLatLong.innerText = 'Lat,Long: ' + event.start_location_latitude + ',' + event.start_location_longitude
+
+            //add map to div
+            const gmpMap2 = document.getElementById('gmpMap2')
+            const gmpMapMarker2 = document.getElementById('gmpMapMarker2')
+            const latitude = parseFloat(event.start_location_latitude,20)
+            const longitude = parseFloat(event.start_location_longitude,20)
+            const centerCoordinates = { lat: latitude, lng: longitude }
+            gmpMap2.center = centerCoordinates
+            gmpMapMarker2.position = centerCoordinates
+
+            eventVideo.style.display = 'none'
+            eventLocation.style.display = 'block'
         })
-
-        showDetails.addEventListener('mouseover',async()=>{
-            const showDetailsInfo = document.getElementById('showDetailsInfo_' + event.id)
-            showDetailsInfo.style.display = 'block'
-        })
-
-        showDetails.addEventListener('mouseout',async()=>{
-            const showDetailsInfo = document.getElementById('showDetailsInfo_' + event.id)
-            showDetailsInfo.style.display = 'none'
-        })
-
-        hideDetails.addEventListener('click',async()=>{
-            const showAllSteps = document.getElementById('showAllSteps')
-            showAllSteps.checked = false
-            hideDetails.style.display = 'none'
-            showDetails.style.display = 'block'
-            cardSteps.classList.add('notVisible')                        
-        })
-
-        hideDetails.addEventListener('mouseover',async()=>{
-            const hideDetailsInfo = document.getElementById('hideDetailsInfo_' + event.id)
-            hideDetailsInfo.style.display = 'block'
-        })
-
-        hideDetails.addEventListener('mouseout',async()=>{
-            const hideDetailsInfo = document.getElementById('hideDetailsInfo_' + event.id)
-            hideDetailsInfo.style.display = 'none'
-        })
-
-        
 
         cardIconLocation.addEventListener('mouseover',async()=>{
             const viewMapInfo = document.getElementById('viewMapInfo_' + event.id)
@@ -429,27 +411,6 @@ function getDateByFromTimestamp(date) {
     const fullDate = day + "-" + month + "-" + year +' ' + hours + ":" + minutes + ":" + seconds
 
     return fullDate
-}
-
-function closePopups(cardsToPrint,popup) {
-    const eventLocation = document.getElementById('eventLocation_' + event.id)
-    const eventVideo = document.getElementById('eventVideo_' + event.id)
-
-    cardsToPrint.forEach(card => {
-        const cardEventLocation = document.getElementById('eventLocation_' + card.id)
-        const cardEventVideo = document.getElementById('eventVideo_' + card.id)
-        
-        if (popup != cardEventLocation) {
-            cardEventLocation.style.display = 'none'
-        }
-
-        if (popup != cardEventVideo) {
-            cardEventVideo.style.display = 'none'
-        }
-
-        popup.style.display = 'block'
-    })
-
 }
 
 
