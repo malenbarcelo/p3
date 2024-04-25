@@ -100,8 +100,16 @@ window.addEventListener('load',async()=>{
     orderDateAsc.addEventListener('click',async()=>{
 
         let orderedData = filtersQty == 0 ? vehiclesData : filteredData
+       
+        orderedData.forEach(element => {
+            if (element.detectedEvents.length == 0) {
+                element.last_detected_event_id = 10000000000
+            }else{                
+                element.last_detected_event_id =  element.detectedEvents.reduce((max, current) => max.id > current.id ? max : current).id                
+            }
+        })
 
-        orderedData.sort((a, b) => b.last_actualization - a.last_actualization)
+        orderedData.sort((a, b) => a.last_detected_event_id - b.last_detected_event_id)
 
         printTable(orderedData,detectedEvents)
 
@@ -113,21 +121,16 @@ window.addEventListener('load',async()=>{
     orderDateDesc.addEventListener('click',async()=>{
 
         let orderedData = filtersQty == 0 ? vehiclesData : filteredData
+       
+        orderedData.forEach(element => {
+            if (element.detectedEvents.length == 0) {
+                element.last_detected_event_id = -10000000000
+            }else{                
+                element.last_detected_event_id =  element.detectedEvents.reduce((max, current) => max.id > current.id ? max : current).id                
+            }
+        })
 
-        orderedData.sort((a, b) => a.last_actualization - b.last_actualization)
-
-        printTable(orderedData,detectedEvents)
-
-        orderDateAsc.classList.remove('notVisible')
-        orderDateDesc.classList.add('notVisible')
-    })
-
-    //////////////////////////////SHOW LOCATIONS//////////////////////////////
-    orderDateDesc.addEventListener('click',async()=>{
-
-        let orderedData = filtersQty == 0 ? vehiclesData : filteredData
-
-        orderedData.sort((a, b) => a.last_actualization - b.last_actualization)
+        orderedData.sort((a, b) => b.last_detected_event_id - a.last_detected_event_id)
 
         printTable(orderedData,detectedEvents)
 

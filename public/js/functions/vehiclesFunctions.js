@@ -59,6 +59,9 @@ function printTable(dataToPrint,detectedEvents) {
 
         //location info
         location.addEventListener('click',async()=>{
+            const divTable = document.getElementById('divTable')
+            
+            console.log(divTable.scrollTop)
             const locationPosition = location.getBoundingClientRect()
             const latitude = parseFloat(element.last_location_latitude,20)
             const longitude = parseFloat(element.last_location_longitude,20)
