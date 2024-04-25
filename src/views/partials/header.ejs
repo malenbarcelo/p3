@@ -7,7 +7,7 @@
         </div>
 
         <div class="divUserLogged">
-            <% if (locals.userLogged) { %>
+            <% if (locals.userLogged && title == 'Vehículos') { %>
 
                 <div class="userLogged">
                     <i class="fa-regular fa-user iconUser"></i>
@@ -24,11 +24,11 @@
 
     <div class="bottomHeader">
 
-        <% if (locals.userLogged) { %>
+        <% if (locals.userLogged && title == 'Vehículos') { %>
             <div class="itemsMenu" id="itemsMenu1">
                 <a href="/vehicles/vehicles-data" class="subitemHeaderMenu">VEHÍCULOS</a>
             </div>
-
+            
             <!---<div class="itemsMenu" id="itemsMenu2">
                 <a href="/send-data/vehicles" class="subitemHeaderMenu">ENVIAR DATOS</a>
             </div>--->
@@ -36,6 +36,8 @@
     </div>
 
 </div>
+
+
 
 
 

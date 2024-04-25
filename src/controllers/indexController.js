@@ -5,6 +5,7 @@ const usersQueries = require('../controllers/dbQueries/usersQueries')
 const usersController = {
     login: (req,res) => {
         try{
+            req.session.destroy()
             return res.render('login',{title:'Login'})
         }catch(error){
             console.log(error)
@@ -29,6 +30,8 @@ const usersController = {
 
             delete userToLogin.password
             req.session.userLogged = userToLogin
+
+
 
             return res.redirect('/vehicles/vehicles-data')
 

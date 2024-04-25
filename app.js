@@ -10,6 +10,7 @@ const eventsRoutes = require('./src/routes/eventsRoutes.js')
 const sendDataRoutes = require('./src/routes/sendDataRoutes.js')
 const userLoggedMiddleware = require('./src/middlewares/userLoggedMiddleware.js')
 const bodyParser = require("body-parser")
+const cors = require('cors');
 
 const app = express()
 
@@ -17,7 +18,13 @@ const app = express()
 app.use(express.static(publicPath))
 
 //use cors to allow any website to connet to my app
-//app.use(cors())
+app.use(cors())
+
+// Middleware para permitir CORS
+app.use('/acec93ee08.js', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3004');
+    next();
+});
 
 //get forms info as objects
 app.use(bodyParser.json({ limit: '50mb' }))
