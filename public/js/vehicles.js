@@ -3,6 +3,8 @@ import { printTable, printCards, getDateByFromTimestamp } from "./functions/vehi
 
 window.addEventListener('load',async()=>{
 
+    loader.style.display = 'block'
+
     //data
     const vehiclesData = await (await fetch(dominio + 'apis/vehicles-data')).json()
     const detectedEvents = await (await fetch(dominio + 'apis/detected-events-data')).json()
@@ -45,8 +47,6 @@ window.addEventListener('load',async()=>{
 
         const showAllSteps = document.getElementById('showAllSteps')
         showAllSteps.checked = false
-
-        console.log(showAllSteps.checked)
 
         eventsCards.innerHTML = ''
 
@@ -148,5 +148,7 @@ window.addEventListener('load',async()=>{
         const eventsPopup = document.getElementById('eventsPopup')
         eventsPopup.classList.remove('slideIn')
     })
+
+    loader.style.display = 'none'
 
 })

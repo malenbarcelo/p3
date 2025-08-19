@@ -35,17 +35,17 @@ function printTable(dataToPrint,detectedEvents) {
         const line1 = '<th class="' + rowClass + '">' + element.vehicle_code + '</th>'
         const line3 = '<th class="' + rowClass + '">' + fullDate + '</th>'
         const line4 = '<th class="' + rowClass + '">' + lastEventFullDate + '</th>'
-        const line5 = '<th class="' + rowClass + '"><i class="fa-solid fa-map-location-dot bodyIcon" id="location_' + element.id + '"></th>'
+        //const line5 = '<th class="' + rowClass + '"><i class="fa-solid fa-map-location-dot bodyIcon" id="location_' + element.id + '"></th>'
         const line6 = '<th class="' + rowClass + '">' + magnifyingGlass + '</th>'
 
-        body.innerHTML += '<tr>' + line1 + line3 + line4 + line5 + line6 + '</tr>'
+        body.innerHTML += '<tr>' + line1 + line3 + line4 + /*line5 + */line6 + '</tr>'
 
         counter += 1
 
     })
 
     //add event listeners
-    const locationInfo = document.getElementById('locationInfo')
+    //const locationInfo = document.getElementById('locationInfo')
     const gmpMap = document.getElementById('gmpMap')
     const gmpMapMarker = document.getElementById('gmpMapMarker')
     const vehicleName = document.getElementById('vehicleName')
@@ -53,36 +53,37 @@ function printTable(dataToPrint,detectedEvents) {
 
     dataToPrint.forEach(element => {
 
-        const location = document.getElementById('location_' + element.id)
+        //const location = document.getElementById('location_' + element.id)
         const events = document.getElementById('events_' + element.id)
         const eventsPopup = document.getElementById('eventsPopup')
 
         //location info
-        location.addEventListener('click',async()=>{
-            const divTable = document.getElementById('divTable')
+        // location.addEventListener('click',async()=>{
+        //     const divTable = document.getElementById('divTable')
             
-            console.log(divTable.scrollTop)
-            const locationPosition = location.getBoundingClientRect()
-            const latitude = parseFloat(element.last_location_latitude,20)
-            const longitude = parseFloat(element.last_location_longitude,20)
-            const centerCoordinates = { lat: latitude, lng: longitude };
-            gmpMap.center = centerCoordinates;
-            gmpMapMarker.position = centerCoordinates;
+        //     const locationPosition = location.getBoundingClientRect()
+        //     const latitude = parseFloat(element.last_location_latitude,20)
+        //     const longitude = parseFloat(element.last_location_longitude,20)
+        //     const centerCoordinates = { lat: latitude, lng: longitude };
+        //     gmpMap.center = centerCoordinates;
+        //     gmpMapMarker.position = centerCoordinates;
 
-            locationInfo.style.left = `${locationPosition.left - 390}px`;
-            locationInfo.style.top = `${locationPosition.top}px`;
+        //     locationInfo.style.left = `${locationPosition.left - 390}px`;
+        //     locationInfo.style.top = `${locationPosition.top}px`;
 
-            vehicleName.innerText = 'Vehículo ' + element.vehicle_code
-            vehicleLatLong.innerText = 'Lat,Long: ' + element.last_location_latitude + ',' + element.last_location_longitude
+        //     vehicleName.innerText = 'Vehículo ' + element.vehicle_code
+        //     vehicleLatLong.innerText = 'Lat,Long: ' + element.last_location_latitude + ',' + element.last_location_longitude
 
-            eventsPopup.classList.remove('slideIn')
-            locationInfo.style.display = 'block'
+        //     eventsPopup.classList.remove('slideIn')
+        //     locationInfo.style.display = 'block'
 
-        })
+        // })
 
         //events info
         if (events != null) {
             events.addEventListener('click',async()=>{
+
+                loader.style.display = 'block'
 
                 const vehicleTitle = document.getElementById('vehicleTitle')
                 const eventsCards = document.getElementById('eventsCards')
@@ -107,6 +108,8 @@ function printTable(dataToPrint,detectedEvents) {
                 vehicleCode.innerText = element.vehicle_code
                 locationInfo.style.display = 'none'
                 eventsPopup.classList.add('slideIn')
+
+                loader.style.display = 'none'
             })
         }
     })
@@ -173,7 +176,7 @@ async function printCards(cardsToPrint) {
 
         //card icons
         const line9 = '<div class="cardIcons">'
-        const line10 = '<div><i class="fa-solid fa-location-dot cardIcon" id="cardIconLocation_' + event.id +'"></i></div>'
+        //const line10 = '<div><i class="fa-solid fa-location-dot cardIcon" id="cardIconLocation_' + event.id +'"></i></div>'
         const line11 = '<div><i class="fa-regular fa-eye cardIcon" id="cardIconEye_' + event.id +'"></i></div>'        
         
         let line12
@@ -237,7 +240,7 @@ async function printCards(cardsToPrint) {
         //end
         const line40 = '</div>'
 
-        const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10 + line11 + line12 + line13 + line14 + line15 + line16 + line17 + line18 + line19 + line20 + line21 + line22 + line23 + line24 + line25 + line26 + line27 + line28 + line29 + line30 + line31 + line32 + line33 + line34 + line35 + line36 + line37 + line38 + line39 + line40
+        const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + /*line10 + */line11 + line12 + line13 + line14 + line15 + line16 + line17 + line18 + line19 + line20 + line21 + line22 + line23 + line24 + line25 + line26 + line27 + line28 + line29 + line30 + line31 + line32 + line33 + line34 + line35 + line36 + line37 + line38 + line39 + line40
         eventsCards.innerHTML += cardHTML
 
     })
@@ -257,27 +260,27 @@ async function printCards(cardsToPrint) {
 
         hideDetails.style.display = 'none'
 
-        cardIconLocation.addEventListener('click',async()=>{
+        // cardIconLocation.addEventListener('click',async()=>{
 
-            const eventLocationContainer = document.getElementById('eventLocationContainer_' + event.id)
+        //     const eventLocationContainer = document.getElementById('eventLocationContainer_' + event.id)
 
-            const line1 = '<gmp-map center="0, 0" zoom="13" map-id="locationMap_' + event.id +'" id="gmpMap2_' + event.id + '">'
-            const line2 = '<gmp-advanced-marker position="0, 0" title="My location" id="gmpMapMarker2_' + event.id + '"></gmp-advanced-marker>'
-            const line3 = '</gmp-map>'
+        //     const line1 = '<gmp-map center="0, 0" zoom="13" map-id="locationMap_' + event.id +'" id="gmpMap2_' + event.id + '">'
+        //     const line2 = '<gmp-advanced-marker position="0, 0" title="My location" id="gmpMapMarker2_' + event.id + '"></gmp-advanced-marker>'
+        //     const line3 = '</gmp-map>'
 
-            eventLocationContainer.innerHTML = line1 + line2 + line3
+        //     eventLocationContainer.innerHTML = line1 + line2 + line3
 
-            //add map to div
-            const gmpMap2 = document.getElementById('gmpMap2_' + event.id)
-            const gmpMapMarker2 = document.getElementById('gmpMapMarker2_' + event.id)
-            const latitude = parseFloat(event.start_location_latitude,20)
-            const longitude = parseFloat(event.start_location_longitude,20)
-            const centerCoordinates = { lat: latitude, lng: longitude }
-            gmpMap2.center = centerCoordinates
-            gmpMapMarker2.position = centerCoordinates
+        //     //add map to div
+        //     const gmpMap2 = document.getElementById('gmpMap2_' + event.id)
+        //     const gmpMapMarker2 = document.getElementById('gmpMapMarker2_' + event.id)
+        //     const latitude = parseFloat(event.start_location_latitude,20)
+        //     const longitude = parseFloat(event.start_location_longitude,20)
+        //     const centerCoordinates = { lat: latitude, lng: longitude }
+        //     gmpMap2.center = centerCoordinates
+        //     gmpMapMarker2.position = centerCoordinates
 
-            closePopups(cardsToPrint,eventLocation)
-        })
+        //     closePopups(cardsToPrint,eventLocation)
+        // })
 
         closeEventLocation.addEventListener('click',async()=>{
             const eventLocationContainer = document.getElementById('eventLocationContainer_' + event.id)
@@ -297,37 +300,84 @@ async function printCards(cardsToPrint) {
 
             closePopups(cardsToPrint,eventVideo)
 
-            //add video to div            
-            $(document).ready(function() {
-                const videoUrl = '/videos/' + event.video + '.mp4'
+            const videoUrl = '/videos/' + event.video + '.mp4'
 
-                $.ajax({
-                    url: videoUrl,
-                    type: 'HEAD',
-                    success: function() {
-                        const line1 = '<video class="video" id="videoPlayer" controls>'
-                        const line2 = '<source src="/videos/' + event.video + '.mp4" type="video/mp4" id="videoName"></source>'
-                        const line3 = '</video>'
-                        divVideo.innerHTML = line1 + line2 + line3
+            $.ajax({
+                url: videoUrl,
+                type: 'HEAD',
+                success: async function () {
+                    const videoHTML = `
+                        <video preload="none" class="video" id="videoPlayer" controls muted playsinline>
+                            <source src="${videoUrl}" type="video/mp4" id="videoName">
+                        </video>
+                    `
+                    divVideo.innerHTML = videoHTML
 
-                        const videoPlayer = document.getElementById('videoPlayer')
+                    const videoPlayer = document.getElementById('videoPlayer')
 
-                        eventLocation.style.display = 'none'
-                        eventVideo.style.display = 'block'
+                    eventLocation.style.display = 'none'
+                    eventVideo.style.display = 'block'
 
-                        videoPlayer.play()
-                    },
-                    error: function() {
-                        const line1 = '<div class="noVideoIcon"><i class="fa-solid fa-video-slash"></i></div>'
-                        const line2 = '<div class="noVideoText">Video no disponible</div>'
-                        const line3 = ''
-                        divVideo.innerHTML = line1 + line2 + line3
-                        
-                        eventLocation.style.display = 'none'
-                        eventVideo.style.display = 'block'
-                    }
-                })
+                    setTimeout(() => {
+                        try {
+                            videoPlayer.load()
+                            videoPlayer.play().catch(e => console.log('Play error:', e))
+                        } catch (e) {
+                            console.log('Error inesperado:', e)
+                        }
+                    }, 100)
+                },
+                error: function () {
+                    divVideo.innerHTML = `
+                        <div class="noVideoIcon"><i class="fa-solid fa-video-slash"></i></div>
+                        <div class="noVideoText">Video no disponible</div>
+                    `
+                    eventLocation.style.display = 'none'
+                    eventVideo.style.display = 'block'
+                }
             })
+
+            //add video to div            
+            // $(document).ready(function() {
+
+            //     const videoUrl = '/videos/' + event.video + '.mp4'
+
+            //     $.ajax({
+            //         url: videoUrl,
+            //         type: 'HEAD',
+            //         success: async function() {
+            //             const line1 = '<video  preload="none" class="video" id="videoPlayer" controls muted playsinline>'
+            //             const line2 = '<source src="/videos/' + event.video + '.mp4" type="video/mp4" id="videoName"></source>'
+            //             const line3 = '</video>'
+            //             divVideo.innerHTML = line1 + line2 + line3
+
+            //             const videoPlayer = document.getElementById('videoPlayer')
+
+            //             eventLocation.style.display = 'none'
+            //             eventVideo.style.display = 'block'
+
+            //             setTimeout(() => {
+            //                 try {
+            //                     videoPlayer.load()
+            //                     videoPlayer.play().catch(e => console.log('Play() falló:', e))
+            //                 } catch (e) {
+            //                     console.log('Error inesperado:', e)
+            //                 }
+            //             }, 100)
+
+                        
+            //         },
+            //         error: function() {
+            //             const line1 = '<div class="noVideoIcon"><i class="fa-solid fa-video-slash"></i></div>'
+            //             const line2 = '<div class="noVideoText">Video no disponible</div>'
+            //             const line3 = ''
+            //             divVideo.innerHTML = line1 + line2 + line3
+                        
+            //             eventLocation.style.display = 'none'
+            //             eventVideo.style.display = 'block'
+            //         }
+            //     })
+            // })
 
         })
 
@@ -376,20 +426,18 @@ async function printCards(cardsToPrint) {
             hideDetailsInfo.style.display = 'none'
         })
 
-        
+        // cardIconLocation.addEventListener('mouseover',async()=>{
+        //     const viewMapInfo = document.getElementById('viewMapInfo_' + event.id)
+        //     viewMapInfo.style.display = 'block'
+        // })
 
-        cardIconLocation.addEventListener('mouseover',async()=>{
-            const viewMapInfo = document.getElementById('viewMapInfo_' + event.id)
-            viewMapInfo.style.display = 'block'
-        })
-
-        cardIconLocation.addEventListener('mouseout',async()=>{
-            const viewMapInfo = document.getElementById('viewMapInfo_' + event.id)
-            viewMapInfo.style.display = 'none'
-        })
+        // cardIconLocation.addEventListener('mouseout',async()=>{
+        //     const viewMapInfo = document.getElementById('viewMapInfo_' + event.id)
+        //     viewMapInfo.style.display = 'none'
+        // })
 
         cardIconDownload.addEventListener('click',async()=>{                        
-            downloadVideoInfo.style.display = 'none'
+            //downloadVideoInfo.style.display = 'none'
             eventVideo.style.display = 'none'
             eventLocation.style.display = 'none'
         })

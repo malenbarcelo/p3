@@ -6,7 +6,9 @@ const usersController = {
     login: (req,res) => {
         try{
             req.session.destroy()
+
             return res.render('login',{title:'Login'})
+            
         }catch(error){
             console.log(error)
             return res.send('Ha ocurrido un error')
