@@ -171,7 +171,7 @@ async function printCards(cardsToPrint) {
         const line4 = '<div class="cardData"><b>EVENTO: </b>' + event.event + '</div>'
         const line5 = '<div class="cardData"><b>FECHA: </b>' + eventDate + '</div>'
         const line6 = '<div class="cardData"><b>DURACIÓN: </b>' + event.event_duration_seconds + ' seg.</div>'
-        const line7 = '<div class="cardData"><b>SCORE: </b>' + parseFloat(event.score,2).toFixed(2) + '</div>'
+        //const line7 = '<div class="cardData"><b>SCORE: </b>' + parseFloat(event.score,2).toFixed(2) + '</div>'
         const line8 = '</div>'
 
         //card icons
@@ -240,7 +240,7 @@ async function printCards(cardsToPrint) {
         //end
         const line40 = '</div>'
 
-        const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + /*line10 + */line11 + line12 + line13 + line14 + line15 + line16 + line17 + line18 + line19 + line20 + line21 + line22 + line23 + line24 + line25 + line26 + line27 + line28 + line29 + line30 + line31 + line32 + line33 + line34 + line35 + line36 + line37 + line38 + line39 + line40
+        const cardHTML = line1 + line2 + line3 + line4 + line5 + line6 + /*line7 + */line8 + line9 + /*line10 + */line11 + line12 + line13 + line14 + line15 + line16 + line17 + line18 + line19 + line20 + line21 + line22 + line23 + line24 + line25 + line26 + line27 + line28 + line29 + line30 + line31 + line32 + line33 + line34 + line35 + line36 + line37 + line38 + line39 + line40
         eventsCards.innerHTML += cardHTML
 
     })
