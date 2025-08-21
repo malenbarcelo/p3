@@ -331,6 +331,10 @@ border-top-right-radius: 15px;
     }
 }
 
+.sidePXXL{
+    width: 1300px;
+}
+
 .sidePXL{
     width: 1000px;
 }

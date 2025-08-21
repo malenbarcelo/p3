@@ -86,7 +86,8 @@
 }
 
 .video{
-    height: 320px;
+    width: 1000px;
+    /*height: 250px;*/
 }
 
 .noVideoIcon{
@@ -102,8 +103,7 @@
 }
 
 .eventVideo{
-    width: 450px;
-    height: 400px;
+    width: 1000px;
     top:25px;
     right: 90px;
 }
