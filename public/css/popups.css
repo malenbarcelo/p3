@@ -1,0 +1,77 @@
+/*--- side popups ---*/
+.sidePopup{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: white;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+
+  /* estado base: oculto a la izquierda */
+  transform: translateX(-100%);
+  visibility: hidden;
+  pointer-events: none;
+
+  /* transición para entrar/salir */
+  transition:
+    transform .8s ease,
+    visibility 0s linear .8s; 
+}
+
+.sidePopup.is-open{
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    transform .8s ease,
+    visibility 0s linear 0s;
+}
+
+/* popup */
+.popup{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* background */
+.pp-1st{
+    background-color: rgba(0,0,0,0.6);
+}
+.pp-2nd{
+    background-color: rgba(0,0,0,0.6);
+}
+
+/* popup content */
+.pp-content{
+    background-color: white;
+    position: relative;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.7);
+    overflow: auto;
+}
+
+
+/*--- close popups ---*/
+.pp-close{
+    width: 98%;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+    margin-top: 7px;
+}
+
+.pp-close-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color1);
+    color: white;
+}

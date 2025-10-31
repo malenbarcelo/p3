@@ -1,0 +1,70 @@
+<div class="sidePopup w-1300" id="edpp">
+
+    <!--- close popup -->
+    <div class="pp-close" id="edppClose">
+        <div class="pp-close-icon w-25 h-25 tl">x</div>
+    </div>
+
+    <!--- titles -->
+    <div class="txxxxl fw-b mt-20 ta-c">DETALLE DE EVENTOS DEL VEHÍCULO</div>
+    <div class="txl mt-10 mb-50 ta-c" id="edppTitle"></div>
+
+    <!--- filters --->
+    <div class="inputs-row cg-15 mb-35">
+        
+        <div class="div-input">
+            <label class="label-std l-3p ts">Fecha desde</label>
+            <input type="date" class="input-std w-150 pad-9-0" id="dateFrom" autocomplete="off">
+        </div>
+        <div class="div-input">
+            <label class="label-std l-3p ts">Fecha hasta</label>
+            <input type="date" class="input-std w-150 pad-9-0" id="dateUntil" autocomplete="off">
+        </div>
+        <div class="div-input">
+            <label class="label-std l-3p ts">Duración mínima (seg)</label>
+            <input type="number" class="input-std w-170 pad-9-0" id="durationMin" autocomplete="off">
+        </div>
+        <div class="div-input">
+            <label class="label-std l-3p ts">Duración máxima (seg)</label>
+            <input type="number" class="input-std w-170 pad-9-0" id="durationMax" autocomplete="off">
+        </div>
+        <div id="edppUnfilter" class="unfilter">
+            <i class="fa-solid fa-filter-circle-xmark"></i>
+            <div class="unfilter-info">Quitar filtro</div>
+        </div>
+    </div>
+
+    <!--- table --->
+    <div class="div-table max-h-450" id="edppTable">
+
+        <!-- table tooltip -->
+        <div class="t-tooltip" id="viewInfo">Ver video</div>
+        <div class="t-tooltip" id="downloadInfo">Descargar video</div>
+
+        <!--- table data --->
+        <table>
+            <thead>
+                <tr class="ts">
+                    <th class="th pad-8-0 w-200">FECHA</th>
+                    <th class="th pad-8-0 w-200">HORA</th>
+                    <th class="th pad-8-0 w-200">DURACIÓN [seg]</th>
+                    <th class="th pad-8-0 w-70">
+                        <i class="fa-regular fa-eye pointer" id="viewIcon"></i>
+                    </th>
+                    <th class="th pad-8-0 w-70">
+                        <i class="fa-solid fa-download pointer" id="downloadIcon"></i>
+                    </th>
+            </thead>
+            <tbody class="" id="edppBody"></tbody>            
+        </table>
+    </div>
+</div>
+
+<!-- loader -->
+<div class="loader ld-std" id="edppLoader">
+    <div class="ld-content ld-edpp top-55p"></div>
+</div>
+
+
+
+

@@ -1,0 +1,86 @@
+.chart-box-1{
+    border: var(--color3) solid 2px;
+    width: 35%;
+    padding: 0px 10px;
+}
+
+.chart-box-2{
+    border: var(--color3) solid 2px;
+    width: 20%;
+    padding: 0px 10px;
+}
+
+.chart-box-3{
+    border: var(--color3) solid 2px;
+    width: 27%;
+    padding: 0px 10px;
+    position: relative;
+    
+}
+
+.chart-donut-box{
+    max-width: 150px;
+    margin: 0 auto;
+}
+
+.chart-donut-legends{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border: var(--color3) solid 1px;
+    bottom: 5px;
+    right: 10px;
+    font-size: 11px;
+    color: rgb(90, 88, 88);
+    padding: 3px 5px;
+}
+
+.chart-donut-legend{
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+}
+
+.chart-donut-legend-box{
+    height: 7px;
+    width: 13px;
+}
+
+.chart-donut-additional-data-box{
+    position: relative;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    row-gap: 7px;
+    color: rgb(62, 61, 61);
+
+}
+
+.chart-donut-additional-data{
+    display: flex;
+    column-gap: 5px;
+}
+
+.chart-donut-no-data{
+    color: rgb(153, 151, 151);
+    position: absolute;
+    top: 100px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    width: 100%;
+    justify-content: center;
+}
+
+.chart-donut-no-data-icon{
+    font-size: 35px;
+}
+
+.chart-donut-no-data-text{
+    font-size: 20px;
+    font-weight: bold;
+    width: 300px;
+    text-align: center;
+}

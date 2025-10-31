@@ -1,0 +1,57 @@
+/*--- height ---*/
+.h-5{
+    height: 5px;
+}
+.h-20{
+    height: 20px;
+}
+.h-25{
+    height: 25px;
+}
+.h-30{
+    height: 30px;
+}
+.h-40{
+    height: 40px;
+}
+.h-50{
+    height: 50px;
+}
+.h-100{
+    height: 100px;
+}
+.h-200{
+    height: 200px;
+}
+.h-250{
+    height: 250px;
+}
+.h-300{
+    height: 300px;
+}
+.h-400{
+    height: 400px;
+}
+.h-500{
+    height: 500px;
+}
+.h-600{
+    height: 600px;
+}
+
+/*--- max height ---*/
+.max-h-400{
+    max-height: 400px;
+    overflow-y: auto;
+}
+.max-h-430{
+    max-height: 430px;
+    overflow-y: auto;
+}
+.max-h-450{
+    max-height: 450px;
+    overflow-y: auto;
+}
+.max-h-500{
+    max-height: 500px;
+}

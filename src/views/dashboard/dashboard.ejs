@@ -1,0 +1,75 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<div class="txxxxl fw-b mt-35 mb-25 ta-c">ESTADÍSTICAS</div>
+
+<div class="flex-r w-95p m-a jc-c cg-25">
+    <div class="chart-box-1">
+        <div class="mt-15 mb-15 ta-c">EVENTOS POR SEMANA - Últimos 3 meses</div>
+        <canvas id="chartWeeks" height="115"></canvas>
+    </div>
+    <div class="chart-box-2">
+        <div class="mt-15 mb-15 ta-c" id="chartWeekTitle"></div>
+        <canvas id="chartWeek" height="200"></canvas>
+    </div>
+    <div class="chart-box-3">
+        <div class="mt-15 mb-10 ta-c" id="">DURACIÓN MEDIA DE LOS EVENTOS</div>
+        <div class="txs flex-r cg-15 jc-c mb-10">
+            <div class="flex-r ai-c pointer">
+                <input type="radio" class="pointer" id="checkMonth" name="checkStyle">
+                <label for="checkMonth" class="pointer" id="checkMonthLabel"></label>
+            </div>
+            <div class="flex-r ai-c pointer">
+                <input type="radio" class="pointer" id="checkWeek" name="checkStyle">
+                <label for="checkWeek" class="pointer" id="checkWeekLabel"></label>
+            </div>
+        </div>
+        <div class="chart-donut-box">
+            <canvas id="chartDonut"></canvas>
+        </div>
+        <!--- legend -->
+        <div class="chart-donut-legends" id="legend">
+            <div class="chart-donut-legend">
+                <div class="chart-donut-legend-box" id="graterThanLegend"></div>
+                <div id="graterThanText"></div>
+            </div>
+            <div class="chart-donut-legend">
+                <div class="chart-donut-legend-box" id="betweenLegend"></div>
+                <div id="betweenText"></div>
+            </div>
+            <div class="chart-donut-legend">
+                <div class="chart-donut-legend-box" id="lessThanLegend"></div>
+                <div id="lessThanText"></div>
+            </div>
+        </div>
+        <!--- additional data -->
+        <div class="chart-donut-additional-data-box" id="dataBox">
+            <div id="durationAvg"></div>
+            <div class="chart-donut-additional-data" id="durationVar"></div>
+        </div>
+        <!--- no data info -->
+        <div class="chart-donut-no-data" id="noData">
+            <i class="fa-solid fa-triangle-exclamation chart-donut-no-data-icon"></i>
+            <div class="chart-donut-no-data-text">No se registran eventos en el período seleccionado</div>
+        </div>
+
+    </div>
+    
+</div>
+
+<!-- chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- data labels plugin -->
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+<!-- loader -->
+<div class="loader ld-std" id="loader">
+    <div class="ld-content top-55p ld-main"></div>
+</div>
+
+<!----------POPUPS---------->
+
+<!----------SCRIPTS---------->
+<script type="module" src="/js/dashboard/dashboard.js?v=<%= Date.now() %>"></script>
+

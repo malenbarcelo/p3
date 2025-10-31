@@ -1,0 +1,47 @@
+/* div inputs*/
+.inputs-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* div input */
+.div-input{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* inputs */
+.input-std{
+    text-align: center;
+    border:rgb(74, 74, 74) solid 1px;
+    border-radius: 5px;
+}
+
+.invalid-input{
+    border: var(--errorColor) solid 2px;
+}
+
+/* labels */
+.label-std{
+    position: absolute;
+    background-color: white;
+    top: -8px;
+    padding: 0px 5px;
+}
+
+.invalid-label{
+    color: var(--errorColor);
+    font-weight: bold;
+}
+

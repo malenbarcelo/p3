@@ -1,0 +1,64 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<div class="txxxxl fw-b mt-35 mb-25 ta-c">VEHÍCULOS</div>
+
+<!--- filters --->
+<div class="inputs-row cg-15 mb-35">
+    
+    <% if (!locals.userLogged || locals.userLogged.id_users_categories == 1) { %>
+        <div class="div-input">
+            <label class="label-std l-3p ts">Empresa</label>
+            <select class="input-std w-250 pad-9-0" id="company">
+                <option value=""></option>
+                <% companies.forEach(company => { %>
+                    <option value="<%= company.id %>"><%= company.company %></option>                 
+                <% }) %>
+            </select>
+        </div>     
+    <% } %>
+    
+    <div class="div-input">
+        <label class="label-std l-3p ts">Vehículo</label>
+        <input type="text" class="input-std w-250 pad-9-0" id="vehicle" autocomplete="off">
+    </div>
+    <div id="unfilter" class="unfilter">
+        <i class="fa-solid fa-filter-circle-xmark"></i>
+        <div class="unfilter-info">Quitar filtro</div>
+    </div>
+</div>
+
+<!--- table --->
+<div class="div-table max-h-400" id="table">
+
+    <!-- table tooltip -->
+    <div class="t-tooltip" id="vdppInfo">Ver detalle</div>
+
+    <!--- table data --->
+    <table>
+        <thead>
+            <tr class="ts">
+                <th class="th pad-8-0 w-250">VEHÍCULO</th>
+                <th class="th pad-8-0 w-250">FECHA ÚLTIMO EVENTO</th>
+                <th class="th pad-8-0 w-250">HORA ÚLTIMO EVENTO</th>
+                <th class="th pad-8-0 w-50">
+                    <i class="fa-solid fa-magnifying-glass-plus pointer" id="vdppIcon"></i>
+                </th>
+        </thead>
+        <tbody class="" id="body"></tbody>
+    </table>
+
+</div>
+
+<!-- loader -->
+<div class="loader ld-std" id="loader">
+    <div class="ld-content ld-main top-55p"></div>
+</div>
+
+<!----------POPUPS---------->
+<%- include('./vehiclesEDPP') %>
+<%- include('./vehiclesVVPP') %>
+
+<!----------SCRIPTS---------->
+<script type="module" src="/js/vehicles/vehicles.js?v=<%= Date.now() %>"></script>
+

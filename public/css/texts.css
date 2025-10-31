@@ -1,0 +1,60 @@
+/*--- text sizes ---*/
+.txs{
+    font-size: 12px;
+}
+.ts{
+    font-size: 13px;
+}
+.tm{
+    font-size: 14px;
+}
+.tl{
+    font-size: 15px;
+}
+.txl{
+    font-size: 16px;
+}
+.txxl{
+    font-size: 17px;
+}
+.txxxl{
+    font-size: 18px;
+}
+.txxxxl{
+    font-size: 19px;
+}
+
+/*--- text sizes number---*/
+.t-50{
+    font-size: 50px;
+}
+
+
+/*--- font color ---*/
+.fc-error{
+    color: var(--errorColor)
+
+}
+
+.fc-blue{
+    color: blue;
+}
+.fc-gray{
+    color: gray;
+}
+
+/*--- font weight ---*/
+.fw-b{
+    font-weight: bold;
+}
+
+/*--- text align ---*/
+.ta-c{
+    text-align: center;
+}
+
+/*--- underline ---*/
+.td-u{
+    text-decoration: underline;
+}
+

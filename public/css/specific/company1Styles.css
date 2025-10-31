@@ -1,0 +1,13 @@
+/* colors */
+:root{
+    --color1:#051435;
+    --color2:#0046FF;
+    --color3:rgb(221, 212, 212);
+    --color4:rgb(252, 246, 246);
+
+}
+
+.company-logo{
+    height: 65px;
+    margin-left: 5px;
+}
