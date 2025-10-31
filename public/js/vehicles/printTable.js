@@ -40,11 +40,12 @@ function eventListeners(data) {
         if (details) {
             details.addEventListener('click',async()=>{
                 loader.style.display = 'block'
-                //const filters = [dateFrom, dateUntil, durationMin, durationMax]
+                g.firstLoad = 1
                 edppUnfilter.click()
+                g.firstLoad = 1
                 g.edppFilters.id_vehicles = element.id
                 g.events = await f.getEventsData()
-                f.resetEventsData()
+                //f.resetEventsData()
                 edppTitle.innerText = element.vehicle_code
                 edpp.style.display = 'block'
                 requestAnimationFrame(() => edpp.classList.add('is-open'))

@@ -53,9 +53,6 @@ async function edppEventListeners() {
     // unfilter event listener
     edppUnfilter.addEventListener("click", async() => {        
         
-        // show loader
-        edppLoader.style.display = 'block'
-        
         // reset filters
         gf.clearInputs(filters)
         g.edppFilters.date_from = ''
@@ -65,8 +62,6 @@ async function edppEventListeners() {
 
         await f.resetEventsData()
         
-        // hide loader
-        edppLoader.style.display = 'none'
     })
     
 }

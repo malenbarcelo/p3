@@ -6,8 +6,6 @@ import { printEvents } from "./printEvents.js"
 const f = {
     getData: async function() {
 
-        console.log(domain)
-
         let filters = ''
         filters += g.filters.page == '' ? '' : `&page=${g.filters.page}`
         filters += g.filters.size == '' ? '' : `&size=${g.filters.size}`
@@ -57,7 +55,7 @@ const f = {
     },
 
     resetEventsData: async function() {
-        
+
         //update scroll data
         g.edppFilters.page = 1
         g.edppLoadedPages = new Set()

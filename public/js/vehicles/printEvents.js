@@ -3,7 +3,9 @@ import { f } from "./functions.js"
 
 async function printEvents() {
 
-    edppLoader.style.display = 'block'
+    if (g.firstLoad == 0) {        
+        edppLoader.style.display = 'block'
+    }
 
     edppBody.innerHTML = ''
     let html = ''
@@ -36,6 +38,8 @@ async function printEvents() {
 
     eventListeners(data)
 
+    g.firstLoad = 0
+
     edppLoader.style.display = 'none'
 }
 
@@ -44,7 +48,6 @@ function eventListeners(data) {
     data.forEach(element => {
 
         const view = document.getElementById('edppView_' + element.id)
-        const download = document.getElementById('edppDownload_' + element.id)
 
         // view
         if (view) {

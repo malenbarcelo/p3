@@ -47,7 +47,8 @@ let g = {
             icon:downloadIcon,
             right:'21%',
         },
-    ]
+    ],
+    firstLoad:0 // to avoi printing 2 loaders
 }
 
 export default g
