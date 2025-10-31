@@ -16,7 +16,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 // CORSallow: subdomainse p3.com/p3.host, *.localhost, *.127.0.0.1.nip.io
 //const ORIGIN_RE = /^https?:\/\/([a-z0-9-]+\.)?(p3\.com|p3\.host|localhost|127\.0\.0\.1\.nip\.io)(:\d+)?$/i
-const ORIGIN_RE = /^https?:\/\/([a-z0-9-]+\.)*(p3\.com|p3\.host|p3\.wnpower\.com|localhost|127\.0\.0\.1\.nip\.io)(:\d+)?$/
+const ORIGIN_RE = /^https?:\/\/([a-z0-9-]+\.)*(p3\.com|p3\.host|p3\.wnpower\.com|p3\.wnpower\.host|localhost|127\.0\.0\.1\.nip\.io)(:\d+)?$/
 
 const extraOrigins = (process.env.CORS_EXTRA_ORIGINS || '')
   .split(',')
