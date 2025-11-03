@@ -6,6 +6,7 @@ const router = express.Router()
 
 ///// login
 router.get('/',appController.login)
+router.get('/login',appController.login)
 router.post('/login',loginFormValidations.login,appController.loginProcess)
 router.get('/logout',appController.logout)
 

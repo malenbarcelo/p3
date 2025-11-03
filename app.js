@@ -70,15 +70,9 @@ app.locals.brands = {
 
 // brands middlewares
 app.use((req, res, next) => {
-  // console.log(req.headers.host)
-  // const host = (req.headers.host || '').split(':')[0]      // delete port
-  // let sub = host.split('.')[0]                              // aesa.p3.com → 'aesa'
-  // if (!sub || sub === 'www') sub = 'default'
-
-  // // soporta dev con subdominios: aesa.localhost, schema.localhost
-  // if (host.endsWith('.localhost')) sub = host.split('.')[0]
-
-  const host = (req.headers.host || '').split(':')[0] // delete port
+  
+  const forwardedHost = req.headers['x-forwarded-host']
+  const host = (forwardedHost || req.headers.host || '').split(':')[0]
   const sub = host.split('.')[0]
 
   const brands = req.app.locals.brands
