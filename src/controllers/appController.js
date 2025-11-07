@@ -1,7 +1,7 @@
 const bottomHeaderMenu = require("../data/bottomHeaderMenu.js")
 const usersQueries = require("../dbQueries/usersQueries")
 const companiesQueries = require("../dbQueries/companiesQueries")
-const {validationResult} = require('express-validator')
+const { validationResult } = require('express-validator')
 
 const appController = {
     // login

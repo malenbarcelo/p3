@@ -129,7 +129,7 @@ app.use('/composed',composedRoutes)
 app.use('/apis',composedRoutes)
 
 
-//console.log('malen: ' + bcrypt.hashSync('jaime',10))
+//console.log('malen: ' + bcrypt.hashSync('zaira123',10))
 
 // const dateString = '28/10/2025'
 // const [dia, mes, año] = dateString.split('/')

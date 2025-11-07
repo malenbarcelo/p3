@@ -41,14 +41,14 @@ function eventListeners(data) {
             details.addEventListener('click',async()=>{
                 loader.style.display = 'block'
                 g.firstLoad = 1
-                edppUnfilter.click()
                 g.firstLoad = 1
                 g.edppFilters.id_vehicles = element.id
-                g.events = await f.getEventsData()
+                //g.events = await f.getEventsData()
                 //f.resetEventsData()
                 edppTitle.innerText = element.vehicle_code
                 edpp.style.display = 'block'
                 requestAnimationFrame(() => edpp.classList.add('is-open'))
+                edppUnfilter.click()
                 loader.style.display = 'none'                
             })  
         }        

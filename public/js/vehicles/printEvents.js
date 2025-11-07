@@ -1,5 +1,4 @@
 import g from "./globals.js"
-import { f } from "./functions.js"
 
 async function printEvents() {
 
