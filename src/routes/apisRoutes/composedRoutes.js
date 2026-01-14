@@ -25,6 +25,7 @@ router.get('/months-events',dashboardController.monthsEvents)
 
 // send events
 router.post('/send-events',eventsController.sendEvents)
+router.get('/send-events-from-json',eventsController.sendEventsFromJson)
 
 // upload video
 router.post('/upload-video', upload.single('video'),eventsController.saveVideo)

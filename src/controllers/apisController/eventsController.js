@@ -2,6 +2,7 @@
 const detectedEventsQueries = require("../../dbQueries/detectedEventsQueries")
 const companiesProjectsQueries = require("../../dbQueries/companiesProjectsQueries")
 const vehiclesQueries = require("../../dbQueries/vehiclesQueries")
+const json = require("../../data/jsonEvenst")
 
 const eventsController = {
     sendEvents: async(req,res) =>{
@@ -49,6 +50,71 @@ const eventsController = {
 
             // create event
             await detectedEventsQueries.create([dataToCreate])
+            
+            // response
+            res.status(200).json({message:'Datos creados con éxito'})
+
+        }catch(error){
+            console.log(error)
+            res.json({message:'Error al crear los datos'})
+        }
+    },
+    sendEventsFromJson: async(req,res) =>{
+        try{
+
+            const allData = json
+
+            const dataToCreate = []
+
+            for (let i = 0; i < allData.length; i++) {
+                const data = allData[i]
+
+                newData = {
+                    start_timestamp: data.start_date_time,
+                    duration_seconds: data.event_duration_seconds,
+                    video: 'r' + data.vehicle_code + '_' + data.start_date_time
+                }
+
+                // get date
+                const date = new Intl.DateTimeFormat('es-AR', {
+                    timeZone: 'America/Argentina/Buenos_Aires',
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).format(new Date(data.start_date_time * 1000)).split(', ')
+
+                // get vehicle
+                const vehicleData = await vehiclesQueries.get({filters:{exact_vehicle_code:data.vehicle_code}})
+
+                if (vehicleData.rows.length > 0) {
+                    newData.id_vehicles = vehicleData.rows[0].id
+                }else{
+                    
+                    // find company
+                    const project = data.vehicle_code.split('_')[0]
+                    const companyProject = await companiesProjectsQueries.get({filters:{project: project}})
+                    const idCompanies = companyProject.length > 0 ? companyProject[0].id_companies : 1 // if project doesn't exist complets with Schema
+
+                    // create vehicle
+                    const createdVehicle = await vehiclesQueries.create([{vehicle_code:data.vehicle_code,id_companies:idCompanies}])
+                    newData.id_vehicles = createdVehicle[0].id
+                }
+
+                // add date
+                newData.date = date[0]
+                newData.time = date[1]
+
+                // add data to dataToCreate
+                dataToCreate.push(newData)
+                
+            }            
+
+            // create event
+            await detectedEventsQueries.create(dataToCreate)
             
             // response
             res.status(200).json({message:'Datos creados con éxito'})

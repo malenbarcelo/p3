@@ -15,7 +15,7 @@ async function printEvents() {
         const rowClass = index % 2 === 0 ? 'body pad-6-0 ts body-even' : 'body pad-6-0 ts body-odd'
         
         // timestamp 90 previous days
-        const lastTimestamp = Math.floor(Date.now() / 1000) - 95 * 24 * 60 * 60
+        const lastTimestamp = Math.floor(Date.now() / 1000) - 500 * 24 * 60 * 60
         
         // view and download icons
         const enabledIcon = element.start_timestamp > lastTimestamp && element.findVideo == 1
