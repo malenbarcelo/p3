@@ -50,13 +50,18 @@ app.disable('etag')
 app.set('view cache', false)
 app.locals.assetV = new Date().toISOString().slice(0,10) // '2025-10-24'
 
-// middleware global anti-cache
+// middleware global anti-cache (excepto videos)
 app.use((req, res, next) => {
-  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
-  res.set('Pragma', 'no-cache')
-  res.set('Expires', '0')
-  // Opcional si usás un CDN: ayuda a que respete cookies de sesión
-  res.set('Vary', 'Cookie')
+  // Si es un video, permitir cache
+  if (req.path.startsWith('/videos/') && req.path.endsWith('.mp4')) {
+    res.set('Cache-Control', 'public, max-age=2592000') // 30 días
+    res.set('Accept-Ranges', 'bytes')
+  } else {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+    res.set('Pragma', 'no-cache')
+    res.set('Expires', '0')
+    res.set('Vary', 'Cookie')
+  }
   next()
 })
 
@@ -86,16 +91,27 @@ app.use((req, res, next) => {
   next()
 })
 
-//use public as statis without cache
+//use public as static with selective cache
 app.use(express.static(publicPath, {
-  etag: false,
-  lastModified: false,
-  cacheControl: false,
-  maxAge: 0,
-  setHeaders: (res) => {
-    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
-    res.set('Pragma', 'no-cache')
-    res.set('Expires', '0')
+  etag: true,
+  lastModified: true,
+  cacheControl: false, // lo manejamos manualmente en el middleware de arriba
+  setHeaders: (res, path) => {
+    // Videos: cache largo
+    if (path.includes('/videos/') && path.endsWith('.mp4')) {
+      res.set('Cache-Control', 'public, max-age=2592000') // 30 días
+      res.set('Accept-Ranges', 'bytes')
+    } 
+    // Imágenes: cache moderado
+    else if (path.match(/\.(jpg|jpeg|png|gif|svg|ico)$/)) {
+      res.set('Cache-Control', 'public, max-age=604800') // 7 días
+    }
+    // Todo lo demás: sin cache
+    else {
+      res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+      res.set('Pragma', 'no-cache')
+      res.set('Expires', '0')
+    }
   }
 }))
 
