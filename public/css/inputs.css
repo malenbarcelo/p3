@@ -2,7 +2,9 @@
 .inputs-row{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .inputs-column{
@@ -10,6 +12,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
 /* div input */
@@ -21,27 +24,94 @@
     flex-direction: column;
 }
 
-/* inputs */
+/* inputs modernos */
 .input-std{
-    text-align: center;
-    border:rgb(74, 74, 74) solid 1px;
-    border-radius: 5px;
+    padding: 10px 14px;
+    border: 2px solid #e0e6ed;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.input-std:focus{
+    outline: none;
+    border-color: var(--color1);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(0, 125, 186, 0.1);
+}
+
+.input-std:hover{
+    border-color: #c5d0dd;
+}
+
+/* Placeholder para inputs de fecha */
+input[type="date"].input-std {
+    color-scheme: light;
+}
+
+input[type="date"].input-std::-webkit-calendar-picker-indicator {
+    opacity: 0.6;
+}
+
+input[type="date"].input-std::-webkit-datetime-edit-text,
+input[type="date"].input-std::-webkit-datetime-edit-month-field,
+input[type="date"].input-std::-webkit-datetime-edit-day-field,
+input[type="date"].input-std::-webkit-datetime-edit-year-field {
+    color: #a0aec0;
+}
+
+input[type="date"].input-std.has-value::-webkit-datetime-edit-text,
+input[type="date"].input-std.has-value::-webkit-datetime-edit-month-field,
+input[type="date"].input-std.has-value::-webkit-datetime-edit-day-field,
+input[type="date"].input-std.has-value::-webkit-datetime-edit-year-field {
+    color: #000000;
+}
+
+select.input-std{
+    cursor: pointer;
+    padding-right: 35px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    appearance: none;
 }
 
 .invalid-input{
-    border: var(--errorColor) solid 2px;
+    border-color: var(--errorColor);
+    background-color: #fff5f5;
 }
 
-/* labels */
+.invalid-input:focus{
+    box-shadow: 0 0 0 3px rgba(221, 7, 7, 0.1);
+}
+
+/* labels modernos */
 .label-std{
+    font-size: 12px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+    align-self: flex-start;
+}
+
+.label-floating{
     position: absolute;
-    background-color: white;
     top: -8px;
-    padding: 0px 5px;
+    left: 12px;
+    background-color: white;
+    padding: 0 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2c3e50;
+    letter-spacing: 0.3px;
+    pointer-events: none;
 }
 
 .invalid-label{
     color: var(--errorColor);
-    font-weight: bold;
 }
+
 

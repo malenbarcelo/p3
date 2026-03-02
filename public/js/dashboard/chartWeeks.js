@@ -10,6 +10,7 @@ function printChartWeeks() {
     const values = g.weeksEvents.map( we => we.count)
 
     const maxVal = Math.max(...values)
+    g.maxValWeeks = Math.ceil(maxVal * 1.3) || 10
 
     Chart.register(ChartDataLabels)
 
@@ -17,7 +18,7 @@ function printChartWeeks() {
     let selectedKey = (lastIdx !== null) ? `0:${lastIdx}` : null
 
     // print chart
-    new Chart(document.getElementById('chartWeeks'), {
+    const chartInstance = new Chart(document.getElementById('chartWeeks'), {
         type: 'bar',
         data: {
             labels,
@@ -27,21 +28,27 @@ function printChartWeeks() {
             borderWidth: 0,
             backgroundColor: ctx => {
                 const key = `${ctx.datasetIndex}:${ctx.dataIndex}`
-                return key === selectedKey ? '#051435' : '#9fa9c2ff'
+                return key === selectedKey ? 'rgba(0, 125, 186, 1)' : 'rgba(0, 125, 186, 0.3)'
             },
-            categoryPercentage: 0.6,
-            barPercentage: 0.7
+            hoverBackgroundColor: ctx => {
+                const key = `${ctx.datasetIndex}:${ctx.dataIndex}`
+                return key === selectedKey ? 'rgba(0, 125, 186, 1)' : 'rgba(0, 125, 186, 0.6)'
+            },
+            borderRadius: 6,
+            categoryPercentage: 0.7,
+            barPercentage: 0.8
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             onHover: (e, els) => {
                 const c = e?.native?.target || e.chart?.canvas || e.target
                 c.style.cursor = els?.length ? 'pointer' : 'default'
             },
-            onClick: (e, elements, chart) => {          // <— agregá el 3er parámetro
+            onClick: (e, elements, chart) => {
                 loader.style.display = 'block'
-                if (!elements?.length) {                   // si no hay barra, apaga loader y salí
+                if (!elements?.length) {
                     loader.style.display = 'none'
                     return
                 }
@@ -49,7 +56,7 @@ function printChartWeeks() {
                 const key = `${el.datasetIndex}:${el.index}`
 
                 if (key !== selectedKey) {
-                    selectedKey = key       // cambia solo si es otra barra
+                    selectedKey = key
                     chart.update()
                 }
 
@@ -63,13 +70,29 @@ function printChartWeeks() {
             },
             scales: {
             x: {
-                ticks: { font: { size: 11, weight: '600' }, minRotation: 45, maxRotation: 45, autoSkip: false },
-                grid: { drawOnChartArea: false }
+                ticks: { 
+                    font: { size: 11, weight: '500', family: 'Poppins, Arial, sans-serif' }, 
+                    minRotation: 45, 
+                    maxRotation: 45, 
+                    autoSkip: false,
+                    color: '#495057'
+                },
+                grid: { display: false },
+                border: { display: true, color: '#e9ecef' }
             },
             y: {
                 beginAtZero: true,
-                max: maxVal > 0 ? maxVal * 1.2 : 1,
-                ticks: { autoSkip: true, stepSize: 1, precision: 0, includeBounds: false, font: { size: 10 } }
+                max: g.maxValWeeks || 10,
+                ticks: { 
+                    autoSkip: true, 
+                    stepSize: 2, 
+                    precision: 0, 
+                    includeBounds: false, 
+                    font: { size: 11, weight: '500', family: 'Poppins, Arial, sans-serif' },
+                    color: '#495057'
+                },
+                grid: { color: '#f1f3f5', drawBorder: false },
+                border: { display: false }
             }
             },
             plugins: {
@@ -78,10 +101,10 @@ function printChartWeeks() {
                 datalabels: {
                     anchor: 'end',
                     align: 'end',
-                    offset: 2,
+                    offset: 4,
                     formatter: v => (v === 0 ? '0' : (v ?? '')),
-                    font: { size: 10, weight: '400' },
-                    color: '#333',
+                    font: { size: 11, weight: '600', family: 'Poppins, Arial, sans-serif' },
+                    color: '#6c757d',
                     display: true
                 }
             }

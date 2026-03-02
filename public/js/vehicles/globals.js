@@ -30,25 +30,25 @@ let g = {
     //edpp scroll
     edppLoadedPages: new Set(),
     edppPreviousScrollTop:0,
-    // main table tooltips
-    tooltips: [
-        {
-            icon:vdppIcon,
-            right:'23%',
-        }
-    ],
-    // edpp tooltips
-    edppTooltips: [
-        {
-            icon:viewIcon,
-            right:'26.5%',
-        },
-        {
-            icon:downloadIcon,
-            right:'21%',
-        },
-    ],
-    firstLoad:0 // to avoi printing 2 loaders
+    // main table tooltips - DEPRECATED: now using CSS tooltips
+    // tooltips: [
+    //     {
+    //         icon:vdppIcon,
+    //         right:'23%',
+    //     }
+    // ],
+    // edpp tooltips - DEPRECATED: now using CSS tooltips
+    // edppTooltips: [
+    //     {
+    //         icon:viewIcon,
+    //         right:'26.5%',
+    //     },
+    //     {
+    //         icon:downloadIcon,
+    //         right:'21%',
+    //     },
+    // ],
+    firstLoad:0 // to avoid printing 2 loaders
 }
 
 export default g

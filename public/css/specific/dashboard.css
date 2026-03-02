@@ -1,86 +1,247 @@
-.chart-box-1{
-    border: var(--color3) solid 2px;
-    width: 35%;
-    padding: 0px 10px;
+/* Dashboard - Diseño Moderno */
+
+.dashboard-filters{
+    padding: 0 15px;
+    margin-bottom: 15px;
 }
 
-.chart-box-2{
-    border: var(--color3) solid 2px;
-    width: 20%;
-    padding: 0px 10px;
+.dashboard-filters .filters-card{
+    max-width: none;
+    margin: 0;
 }
 
-.chart-box-3{
-    border: var(--color3) solid 2px;
-    width: 27%;
-    padding: 0px 10px;
+.dashboard-grid{
+    display: flex;
+    gap: 15px;
+    padding: 0 15px 15px;
+    flex-wrap: wrap;
+}
+
+.chart-card{
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    padding: 15px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-card:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.chart-card-large{
+    flex: 0 0 40%;
+    max-width: 40%;
+    max-height: 280px;
+}
+
+.chart-card-medium{
+    flex: 0 0 25%;
+    max-width: 25%;
+    max-height: 280px;
+}
+
+.chart-card-small{
+    flex: 0 0 25%;
+    max-width: 25%;
+    max-height: 280px;
     position: relative;
-    
+    overflow: hidden;
 }
 
+.chart-card-header{
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #f1f3f5;
+    min-height: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chart-card-title{
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color1);
+    margin: 0 0 3px 0;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.chart-card-subtitle{
+    font-size: 12px;
+    color: #6c757d;
+    margin: 0;
+    font-weight: 400;
+}
+
+.chart-card-body{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.chart-card-body canvas{
+    max-height: 100%;
+}
+
+/* Chart Filters */
+.chart-filters{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.radio-option{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #495057;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.radio-option:hover{
+    background-color: #f8f9fa;
+}
+
+.radio-option input[type="radio"]{
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color1);
+}
+
+.radio-option span{
+    cursor: pointer;
+}
+
+/* Donut Chart */
 .chart-donut-box{
-    max-width: 150px;
-    margin: 0 auto;
+    max-width: 130px;
+    margin: 0 auto 8px;
+}
+
+.chart-card-small .chart-card-body{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex: 1;
 }
 
 .chart-donut-legends{
-    position: absolute;
     display: flex;
     flex-direction: column;
-    border: var(--color3) solid 1px;
-    bottom: 5px;
-    right: 10px;
+    gap: 5px;
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
     font-size: 11px;
-    color: rgb(90, 88, 88);
-    padding: 3px 5px;
+    color: #495057;
+    margin-bottom: 0;
+    flex: 0 0 40%;
 }
 
 .chart-donut-legend{
     display: flex;
-    column-gap: 5px;
     align-items: center;
+    gap: 8px;
 }
 
 .chart-donut-legend-box{
-    height: 7px;
-    width: 13px;
+    height: 10px;
+    width: 18px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.chart-donut-data-row{
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
 }
 
 .chart-donut-additional-data-box{
-    position: relative;
-    bottom: 10px;
     display: flex;
     flex-direction: column;
-    font-size: 12px;
-    row-gap: 7px;
-    color: rgb(62, 61, 61);
-
+    gap: 10px;
+    font-size: 11px;
+    color: #2c3e50;
+    padding: 8px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    flex: 0 0 50%;
+    justify-content: center;
 }
 
 .chart-donut-additional-data{
     display: flex;
-    column-gap: 5px;
+    gap: 6px;
 }
 
 .chart-donut-no-data{
-    color: rgb(153, 151, 151);
     position: absolute;
-    top: 100px;
-    right: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    column-gap: 5px;
-    width: 100%;
-    justify-content: center;
+    gap: 15px;
+    color: #adb5bd;
+    text-align: center;
 }
 
 .chart-donut-no-data-icon{
-    font-size: 35px;
+    font-size: 48px;
 }
 
 .chart-donut-no-data-text{
-    font-size: 20px;
-    font-weight: bold;
-    width: 300px;
-    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    max-width: 250px;
+    line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+    .dashboard-grid{
+        flex-direction: column;
+    }
+    
+    .chart-card-large,
+    .chart-card-medium,
+    .chart-card-small{
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid{
+        padding: 0 10px 10px;
+        gap: 15px;
+    }
+    
+    .chart-card{
+        padding: 15px;
+    }
+    
+    .chart-card-title{
+        font-size: 14px;
+    }
+    
+    .chart-card-subtitle{
+        font-size: 12px;
+    }
 }

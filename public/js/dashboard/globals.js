@@ -12,9 +12,9 @@ let g = {
     graterThan: 9,
     lessThan:5,
     monthsToGet:2,
-    graterThanColor:'#3f4b67ff',
-    lessThanColor:'#8597c1ff',
-    betweenColor:'#57668aff',
+    graterThanColor:'rgba(0, 125, 186, 1)',
+    betweenColor:'rgba(0, 125, 186, 0.65)',
+    lessThanColor:'rgba(0, 125, 186, 0.35)',
     
 }
 

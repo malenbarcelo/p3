@@ -1,24 +1,27 @@
-<!--- view cideo popuo (VVPP) -->
+<!--- view video popup (VVPP) -->
 <div class="popup pp-1st" id="vvpp">
 
-    <div class="pp-content mt-150 ml-50 w-1200" id="vvppContent">
+    <div class="pp-content video-popup-content" id="vvppContent">
 
     <!--- close popup -->
     <div class="pp-close" id="vvppClose">
-        <div class="pp-close-icon w-20 h-20 tl">x</div>
+        <div class="pp-close-icon-modern">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
     </div>
 
-    <!--- title -->
-    <div class="txxl fw-b mt-10 ta-c" id="vvppTitle"></div>
-    <div class="tl mt-10 mb-25 ta-c" id="vvppSubtitle"></div>
+    <!--- header -->
+    <div class="popup-header">
+        <h2 class="popup-title" id="vvppTitle"></h2>
+        <p class="popup-subtitle" id="vvppSubtitle"></p>
+    </div>
 
     <!--- video -->
-    <div id="vvppVideo" class="mb-50 ta-c">        
-        <video preload="none" class="h-250" id="vvppVideoPlayer" controls muted playsinline>
+    <div id="vvppVideo" class="video-container">        
+        <video preload="none" id="vvppVideoPlayer" controls playsinline>
             <source src="" type="video/mp4" id="vvppVideoName">
         </video>
     </div>
 
 </div>
-
-
+</div>

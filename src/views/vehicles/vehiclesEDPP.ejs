@@ -2,61 +2,65 @@
 
     <!--- close popup -->
     <div class="pp-close" id="edppClose">
-        <div class="pp-close-icon w-25 h-25 tl">x</div>
+        <div class="pp-close-icon-modern">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
     </div>
 
     <!--- titles -->
-    <div class="txxxxl fw-b mt-20 ta-c">DETALLE DE EVENTOS DEL VEHÍCULO</div>
-    <div class="txl mt-10 mb-50 ta-c" id="edppTitle"></div>
+    <div class="popup-header">
+        <h2 class="popup-title">Detalle de Eventos</h2>
+        <p class="popup-subtitle" id="edppTitle"></p>
+    </div>
 
     <!--- filters --->
-    <div class="inputs-row cg-15 mb-35">
-        
-        <div class="div-input">
-            <label class="label-std l-3p ts">Fecha desde</label>
-            <input type="date" class="input-std w-150 pad-9-0" id="dateFrom" autocomplete="off">
-        </div>
-        <div class="div-input">
-            <label class="label-std l-3p ts">Fecha hasta</label>
-            <input type="date" class="input-std w-150 pad-9-0" id="dateUntil" autocomplete="off">
-        </div>
-        <div class="div-input">
-            <label class="label-std l-3p ts">Duración mínima (seg)</label>
-            <input type="number" class="input-std w-170 pad-9-0" id="durationMin" autocomplete="off">
-        </div>
-        <div class="div-input">
-            <label class="label-std l-3p ts">Duración máxima (seg)</label>
-            <input type="number" class="input-std w-170 pad-9-0" id="durationMax" autocomplete="off">
-        </div>
-        <div id="edppUnfilter" class="unfilter">
-            <i class="fa-solid fa-filter-circle-xmark"></i>
-            <div class="unfilter-info">Quitar filtro</div>
+    <div class="filters-card">
+        <div class="inputs-row">
+            <div class="div-input">
+                <label class="label-std">Fecha desde</label>
+                <input type="date" class="input-std w-140" id="dateFrom" autocomplete="off">
+            </div>
+            <div class="div-input">
+                <label class="label-std">Fecha hasta</label>
+                <input type="date" class="input-std w-140" id="dateUntil" autocomplete="off">
+            </div>
+            <div class="div-input">
+                <label class="label-std">Duración mín (seg)</label>
+                <input type="number" class="input-std w-140" id="durationMin" autocomplete="off">
+            </div>
+            <div class="div-input">
+                <label class="label-std">Duración máx (seg)</label>
+                <input type="number" class="input-std w-140" id="durationMax" autocomplete="off">
+            </div>
+            <div id="edppUnfilter" class="unfilter-btn">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+                <span>Limpiar filtros</span>
+            </div>
         </div>
     </div>
 
-    <!--- table --->
-    <div class="div-table max-h-450" id="edppTable">
-
-        <!-- table tooltip -->
-        <div class="t-tooltip" id="viewInfo">Ver video</div>
-        <div class="t-tooltip" id="downloadInfo">Descargar video</div>
-
-        <!--- table data --->
-        <table>
-            <thead>
-                <tr class="ts">
-                    <th class="th pad-8-0 w-200">FECHA</th>
-                    <th class="th pad-8-0 w-200">HORA</th>
-                    <th class="th pad-8-0 w-200">DURACIÓN [seg]</th>
-                    <th class="th pad-8-0 w-70">
-                        <i class="fa-regular fa-eye pointer" id="viewIcon"></i>
-                    </th>
-                    <th class="th pad-8-0 w-70">
-                        <i class="fa-solid fa-download pointer" id="downloadIcon"></i>
-                    </th>
-            </thead>
-            <tbody class="" id="edppBody"></tbody>            
-        </table>
+    <!--- lista de eventos --->
+    <div class="events-list-container">
+        <div class="events-list-header">
+            <div class="list-header-item" style="flex: 1.5;">FECHA</div>
+            <div class="list-header-item" style="flex: 1.5;">HORA</div>
+            <div class="list-header-item" style="flex: 1.5;">DURACIÓN [seg]</div>
+            <div class="list-header-item" style="width: 80px;">
+                <i class="fa-regular fa-eye" id="viewIcon" style="display: none;"></i>
+            </div>
+            <div class="list-header-item" style="width: 80px;">
+                <i class="fa-solid fa-download" id="downloadIcon" style="display: none;"></i>
+            </div>
+        </div>
+        
+        <div class="events-list" id="edppTable">
+            <!-- table tooltip -->
+            <div class="t-tooltip" id="viewInfo">Ver video</div>
+            <div class="t-tooltip" id="downloadInfo">Descargar video</div>
+            
+            <!-- Lista generada dinámicamente -->
+            <div id="edppBody"></div>
+        </div>
     </div>
 </div>
 

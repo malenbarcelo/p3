@@ -1,36 +1,70 @@
 <%- include('../partials/head') %>
-<%- include('../partials/header') %>
 
-<div class="txxxxl fw-b mt-35 mb-70 ta-c">INICIAR SESIÓN</div>
-
-<form action="/login" method="POST">
-    <div class="inputs-column">
-        <div class="div-input">
-            <label for="email" class="label-std l-3p ts <%= locals.errors && errors.email ? 'invalid-label' : null %>">EMAIL</label>
-            <input type="text" name="email" class="input-std w-350 pad-12-0 <%= locals.errors && errors.email ? 'invalid-input' : null %>" value="<%= locals.oldData ? oldData.email : null %>" autocomplete="off">
-            <div class="fw-b fc-error txs">
-                <% if (locals.errors && errors.email) { %>
-                    <%= errors.email.msg %>
-                <% } %>
+<body>
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-logo-p3">
+                <img src="/images/p3.jpg" alt="P3" class="login-logo-p3-img">
+            </div>
+            <div class="login-logo-company">
+                <img src="<%= brand.logo %>" alt="<%= brand.name %>" class="login-logo-company-img">
             </div>
         </div>
-        <div class="div-input mt-25">
-            <label for="password" class="label-std l-3p ts <%= locals.errors && errors.password ? 'invalid-label' : null %>">CONTRASEÑA</label>
-            <input type="password" name="password" class="input-std w-350 pad-12-0 <%= locals.errors && errors.password ? 'invalid-input' : null %>" value="<%= locals.oldData ? oldData.password : null %>" autocomplete="off">
-            <div class="fw-b fc-error txs   ">
-                <% if (locals.errors && errors.password) { %>
-                    <%= errors.password.msg %>
-                <% } %>
+
+        <form action="/login" method="POST" class="login-form">
+            <div class="login-input-group">
+                <label for="email" class="login-label <%= locals.errors && errors.email ? 'invalid' : '' %>">
+                    Email
+                </label>
+                <div class="login-input-wrapper">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        id="email"
+                        class="login-input <%= locals.errors && errors.email ? 'invalid' : '' %>" 
+                        value="<%= locals.oldData ? oldData.email : '' %>" 
+                        placeholder="tu@email.com"
+                        autocomplete="email"
+                    >
+                    <i class="fa-solid fa-envelope login-input-icon"></i>
+                </div>
+                <div class="login-error">
+                    <%= locals.errors && errors.email ? errors.email.msg : '' %>
+                </div>
             </div>
-        </div>        
-    </div>
 
-    <div class="buttons-row mt-xl">
-        <button type="submit" class="btn-std mt-35 w-350 pad-12-0" id="loginBtn">LOGIN</button>
-    </div>
+            <div class="login-input-group">
+                <label for="password" class="login-label <%= locals.errors && errors.password ? 'invalid' : '' %>">
+                    Contraseña
+                </label>
+                <div class="login-input-wrapper">
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="password"
+                        class="login-input <%= locals.errors && errors.password ? 'invalid' : '' %>" 
+                        value="<%= locals.oldData ? oldData.password : '' %>" 
+                        placeholder="••••••••"
+                        autocomplete="current-password"
+                    >
+                    <i class="fa-solid fa-lock login-input-icon"></i>
+                </div>
+                <div class="login-error">
+                    <%= locals.errors && errors.password ? errors.password.msg : '' %>
+                </div>
+            </div>
 
-    <div class="flex jc-c"><div class="ts ta-c mt-35 td-u pointer fc-blue" id="restorePassword">Olvidé mi contraseña</div></div>
-    <div class="flex jc-c" ><div class="ts ta-c mt-10 td-u pointer fc-blue">Cambiar mi contraseña</div></div>
-    
-    
-</form>
+            <button type="submit" class="login-button" id="loginBtn">
+                Iniciar Sesión
+            </button>
+
+            <div class="login-links">
+                <a href="#" class="login-link" id="restorePassword">¿Olvidaste tu contraseña?</a>
+                <a href="#" class="login-link">Cambiar contraseña</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

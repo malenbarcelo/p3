@@ -1,60 +1,93 @@
 <%- include('../partials/head') %>
+<body>
 <%- include('../partials/header') %>
 
-<div class="txxxxl fw-b mt-35 mb-25 ta-c">ESTADÍSTICAS</div>
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">Dashboard</h1>
+    </div>
 
-<div class="flex-r w-95p m-a jc-c cg-25">
-    <div class="chart-box-1">
-        <div class="mt-15 mb-15 ta-c">EVENTOS POR SEMANA - Últimos 3 meses</div>
-        <canvas id="chartWeeks" height="115"></canvas>
+    <!--- filters --->
+    <div class="dashboard-filters">
+        <div class="filters-card">
+            <div class="inputs-row">
+                <div class="div-input">
+                    <input type="text" class="input-std w-200" id="vehicleFilter" placeholder="Buscar vehículo..." autocomplete="off">
+                </div>
+                
+                <div id="dashboardUnfilter" class="unfilter-btn">
+                    <i class="fa-solid fa-filter-circle-xmark"></i>
+                    <span>Limpiar filtros</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="chart-box-2">
-        <div class="mt-15 mb-15 ta-c" id="chartWeekTitle"></div>
-        <canvas id="chartWeek" height="200"></canvas>
-    </div>
-    <div class="chart-box-3">
-        <div class="mt-15 mb-10 ta-c" id="">DURACIÓN MEDIA DE LOS EVENTOS</div>
-        <div class="txs flex-r cg-15 jc-c mb-10">
-            <div class="flex-r ai-c pointer">
-                <input type="radio" class="pointer" id="checkMonth" name="checkStyle">
-                <label for="checkMonth" class="pointer" id="checkMonthLabel"></label>
+
+    <div class="dashboard-grid">
+        <div class="chart-card chart-card-large">
+            <div class="chart-card-header">
+                <h3 class="chart-card-title">Eventos por Semana</h3>
+                <p class="chart-card-subtitle">Últimos 3 meses</p>
             </div>
-            <div class="flex-r ai-c pointer">
-                <input type="radio" class="pointer" id="checkWeek" name="checkStyle">
-                <label for="checkWeek" class="pointer" id="checkWeekLabel"></label>
+            <div class="chart-card-body">
+                <canvas id="chartWeeks" height="130"></canvas>
             </div>
-        </div>
-        <div class="chart-donut-box">
-            <canvas id="chartDonut"></canvas>
-        </div>
-        <!--- legend -->
-        <div class="chart-donut-legends" id="legend">
-            <div class="chart-donut-legend">
-                <div class="chart-donut-legend-box" id="graterThanLegend"></div>
-                <div id="graterThanText"></div>
-            </div>
-            <div class="chart-donut-legend">
-                <div class="chart-donut-legend-box" id="betweenLegend"></div>
-                <div id="betweenText"></div>
-            </div>
-            <div class="chart-donut-legend">
-                <div class="chart-donut-legend-box" id="lessThanLegend"></div>
-                <div id="lessThanText"></div>
-            </div>
-        </div>
-        <!--- additional data -->
-        <div class="chart-donut-additional-data-box" id="dataBox">
-            <div id="durationAvg"></div>
-            <div class="chart-donut-additional-data" id="durationVar"></div>
-        </div>
-        <!--- no data info -->
-        <div class="chart-donut-no-data" id="noData">
-            <i class="fa-solid fa-triangle-exclamation chart-donut-no-data-icon"></i>
-            <div class="chart-donut-no-data-text">No se registran eventos en el período seleccionado</div>
         </div>
 
+        <div class="chart-card chart-card-medium">
+            <div class="chart-card-header">
+                <h3 class="chart-card-title" id="chartWeekTitle"></h3>
+            </div>
+            <div class="chart-card-body">
+                <canvas id="chartWeek" height="140"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card chart-card-small">
+            <div class="chart-card-header">
+                <h3 class="chart-card-title">Duración Media de los Eventos</h3>
+            </div>
+            <div class="chart-card-body">
+                <div class="chart-filters">
+                    <label class="radio-option">
+                        <input type="radio" id="checkMonth" name="checkStyle">
+                        <span id="checkMonthLabel"></span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" id="checkWeek" name="checkStyle">
+                        <span id="checkWeekLabel"></span>
+                    </label>
+                </div>
+                <div class="chart-donut-box">
+                    <canvas id="chartDonut"></canvas>
+                </div>
+                <div class="chart-donut-data-row">
+                    <div class="chart-donut-legends" id="legend">
+                        <div class="chart-donut-legend">
+                            <div class="chart-donut-legend-box" id="graterThanLegend"></div>
+                            <div id="graterThanText"></div>
+                        </div>
+                        <div class="chart-donut-legend">
+                            <div class="chart-donut-legend-box" id="betweenLegend"></div>
+                            <div id="betweenText"></div>
+                        </div>
+                        <div class="chart-donut-legend">
+                            <div class="chart-donut-legend-box" id="lessThanLegend"></div>
+                            <div id="lessThanText"></div>
+                        </div>
+                    </div>
+                    <div class="chart-donut-additional-data-box" id="dataBox">
+                        <div id="durationAvg"></div>
+                        <div class="chart-donut-additional-data" id="durationVar"></div>
+                    </div>
+                </div>
+                <div class="chart-donut-no-data" id="noData">
+                    <i class="fa-solid fa-triangle-exclamation chart-donut-no-data-icon"></i>
+                    <div class="chart-donut-no-data-text">No se registran eventos en el período seleccionado</div>
+                </div>
+            </div>
+        </div>
     </div>
-    
 </div>
 
 <!-- chart.js -->
@@ -68,8 +101,8 @@
     <div class="ld-content top-55p ld-main"></div>
 </div>
 
-<!----------POPUPS---------->
-
 <!----------SCRIPTS---------->
 <script type="module" src="/js/dashboard/dashboard.js?v=<%= Date.now() %>"></script>
 
+</body>
+</html>

@@ -65,7 +65,8 @@ app.locals.brands = {
   aesa: { name: 'AESA', id: 3, favicon: '/images/favicon3.jpg', logo: '/images/companyLogo3.svg', css: '/css/specific/company3Styles.css'},
   techint: { name: 'Techint - SACDE', id: 2, favicon: '/images/favicon3.jpg', logo: '/images/companyLogo3.svg', css: '/css/specific/company3Styles.css'},
   schema: { name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', css: '/css/specific/company1Styles.css' },
-  default:{ name: 'SCHEMA',id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', css: '/css/specific/company1Styles.css' }
+  default: { name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', css: '/css/specific/company1Styles.css' },
+  contreras:{ name: 'Contreras',id: 1, favicon: '/images/favicon4.jpg', logo: '/images/companyLogo4.png', css: '/css/specific/company4Styles.css' }
 }
 
 // brands middlewares

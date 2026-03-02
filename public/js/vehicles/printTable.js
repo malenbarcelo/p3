@@ -10,18 +10,32 @@ async function printTable() {
 
     data.forEach((element,index) => {
 
-        const rowClass = index % 2 === 0 ? 'body pad-6-0 ts body-even' : 'body pad-6-0 ts body-odd'
-        const detailsIcon = element.detected_events.length > 0 ? `<i class="fa-solid fa-magnifying-glass-plus pointer" id="details_${element.id}"></i>` : ''
-        const trClass = element.detected_events.length == 0 ? '' : 'pointer'
+        const hasEvents = element.detected_events.length > 0
+        const itemClass = hasEvents ? 'vehicle-list-item' : 'vehicle-list-item no-events'
+        const detailsIcon = hasEvents ? `<i class="fa-solid fa-chevron-right list-action-icon" id="details_${element.id}"></i>` : ''
         
-        html += `
-            <tr class="${trClass}" id="tr_${element.id}">
-                <td class="${rowClass}">${element.vehicle_code}</td>
-                <td class="${rowClass}">${element.detected_events.length == 0 ? '-' : element.detected_events[0].date}</td>
-                <td class="${rowClass}">${element.detected_events.length == 0 ? '-' : element.detected_events[0].time}</td>
-                <td class="${rowClass}">${detailsIcon}</td>
-            </tr>
+        if (hasEvents) {
+            const date = element.detected_events[0].date
+            const time = element.detected_events[0].time
+            
+            html += `
+                <div class="${itemClass}" id="tr_${element.id}">
+                    <div class="list-item-col vehicle-name">${element.vehicle_code}</div>
+                    <div class="list-item-col date">${date}</div>
+                    <div class="list-item-col time">${time}</div>
+                    <div class="list-item-col actions">${detailsIcon}</div>
+                </div>
             `
+        } else {
+            html += `
+                <div class="${itemClass}" id="tr_${element.id}">
+                    <div class="list-item-col vehicle-name">${element.vehicle_code}</div>
+                    <div class="list-item-col no-events-message" style="flex: 1.5;">Sin eventos detectados</div>
+                    <div class="list-item-col empty" style="flex: 1.5;">-</div>
+                    <div class="list-item-col actions"></div>
+                </div>
+            `
+        }
     })
 
     body.innerHTML = html
@@ -54,7 +68,7 @@ function eventListeners(data) {
         }        
 
         // view details with double click
-        tr.addEventListener('dblclick',async()=>{
+        tr.addEventListener('click',async()=>{
             if (details) {
                 details.click()
             }

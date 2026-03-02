@@ -1,41 +1,66 @@
 <div class="header">
     <div class="top-header">
-        <div class="top-header-element">
-            <img src="<%= brand.logo %>?v=<%= assetV %>" alt="<%= brand.name %>" class="company-logo">
-        </div>
-        <div class="top-header-element top-header-right">
-            <div class="user-logged">
-                <% if (locals.userLogged) { %>
-                    <i class="fa-solid fa-user user-logged-icon"></i>
-                    <div class="user-logged-name">
-                        <%= userLogged.first_name + ' ' + userLogged.last_name %>
-                        <a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket logout-icon"></i></a>
-                    </div>
-                <% } %>
+        <div class="top-header-left">
+            <!-- Burger Menu Icon -->
+            <% if (locals.bottomHeaderMenu) { %>
+                <div class="burger-menu-icon">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            <% } %>
+            
+            <div class="top-header-element">
+                <img src="<%= brand.logo %>?v=<%= assetV %>" alt="<%= brand.name %>" class="company-logo">
             </div>
         </div>
-    </div>
-
-    <div class="bottom-header <%= locals.bottomHeaderMenu ? 'bottom-header-border' : '' %>">
-        <% if (locals.bottomHeaderMenu) { %>
-            <% bottomHeaderMenu.forEach(itemMenu => { %>
-                
-                <div class="<%= locals.selectedItem == itemMenu.name ? 'bottom-header-item bhi-selected' : 'bottom-header-item' %>">
-                    <a href="<%= itemMenu.href %>"><%= itemMenu.name %></a>                
-
-                    <% if (itemMenu.subitems.length > 0) { %>
-                        <div class="bottom-header-subitems" id="<%= 'subItems_' + itemMenu.id %>">
-                            <% itemMenu.subitems.forEach(subitem => { %>
-                                <a href="<%= subitem.href %>" class="bottom-header-subitem"><%= subitem.subitem %></a>                                
-                            <% }) %>
-                        </div>
-                        <div class="bottom-header-show-subitems"><i class="fa-solid fa-chevron-down"></i></div>
-                    <% } %>
+        
+        <div class="top-header-element top-header-right">
+            <% if (locals.userLogged) { %>
+                <div class="user-logged">
+                    <i class="fa-solid fa-circle-user user-logged-icon"></i>
+                    <div class="user-logged-name">
+                        <%= userLogged.first_name + ' ' + userLogged.last_name %>
+                        <a href="/logout"><i class="fa-solid fa-arrow-right-to-bracket logout-icon"></i></a>
+                    </div>
                 </div>
-            <% }) %>
-            
-        <% } %>
+            <% } %>
+        </div>
     </div>
+
+    <!-- Sidebar Menu -->
+    <% if (locals.bottomHeaderMenu) { %>
+        <div class="sidebar-menu">
+            <div class="sidebar-menu-header">
+                <div class="sidebar-header-content">
+                    <i class="fa-solid fa-bars sidebar-menu-icon"></i>
+                    <h3>Menú</h3>
+                </div>
+            </div>
+            <div class="sidebar-menu-content">
+                <% bottomHeaderMenu.forEach(itemMenu => { %>
+                    <div class="sidebar-menu-item <%= locals.selectedItem == itemMenu.name ? 'sidebar-item-selected' : '' %>">
+                        <a href="<%= itemMenu.href %>" class="sidebar-item-link">
+                            <%= itemMenu.name %>
+                            <% if (itemMenu.subitems.length > 0) { %>
+                                <i class="fa-solid fa-chevron-right sidebar-chevron"></i>
+                            <% } %>
+                        </a>
+                        
+                        <% if (itemMenu.subitems.length > 0) { %>
+                            <div class="sidebar-subitems">
+                                <% itemMenu.subitems.forEach(subitem => { %>
+                                    <a href="<%= subitem.href %>" class="sidebar-subitem">
+                                        <i class="fa-solid fa-circle sidebar-bullet"></i>
+                                        <%= subitem.subitem %>
+                                    </a>
+                                <% }) %>
+                            </div>
+                        <% } %>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+        <div class="sidebar-overlay"></div>
+    <% } %>
 </div>  
 
 

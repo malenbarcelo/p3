@@ -56,9 +56,9 @@ window.addEventListener('load',async()=>{
         })
     })
 
-    // show tooltips
-    gf.showTooltips(g.tooltips,245,100)
-    gf.showTooltips(g.edppTooltips,207,100)
+    // show tooltips - DEPRECATED: now using CSS tooltips
+    // gf.showTooltips(g.tooltips,245,100)
+    // gf.showTooltips(g.edppTooltips,207,100)
 
     // filters event listeners
     const filters = [vehicle,company].filter( f => f != null)

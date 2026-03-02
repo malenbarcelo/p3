@@ -1,0 +1,102 @@
+/* Pages - Diseño Moderno */
+.page-container{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem;
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.page-header{
+    margin-bottom: 1.5rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.page-title{
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--color1);
+    margin: 0;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+/* Filters Card */
+.filters-card{
+    background: white;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+    flex-shrink: 0;
+}
+
+.unfilter-btn{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background-color: #f8f9fa;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    color: #4b5563;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-end;
+}
+
+.unfilter-btn:hover{
+    background-color: #e3f2fd;
+    border-color: var(--color1);
+    color: var(--color1);
+    transform: translateY(-1px);
+}
+
+.unfilter-btn i{
+    font-size: 14px;
+}
+
+/* Table Container */
+.table-container{
+    background: white;
+    border-radius: 10px;
+    padding: 1.25rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-container .div-table{
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-container{
+        padding: 1rem;
+    }
+    
+    .page-title{
+        font-size: 24px;
+    }
+    
+    .filters-card{
+        padding: 0.875rem 1rem;
+    }
+    
+    .table-container{
+        padding: 1rem;
+    }
+}
