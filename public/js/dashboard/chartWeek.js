@@ -43,7 +43,7 @@ function printChartWeek() {
             maintainAspectRatio: false,
             onHover: (e, els) => {
                 const c = e?.native?.target || e.chart?.canvas || e.target
-                c.style.cursor = els?.length ? 'pointer' : 'default'
+                c.style.cursor = 'default'
             },
             scales: {
             x: {
