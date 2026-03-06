@@ -71,7 +71,7 @@ app.locals.brands = {
   techint: { name: 'Techint - SACDE', id: 2, favicon: '/images/favicon2.jpg', logo: '/images/companyLogo3.svg', loginLogo: '/images/loginCompanyLogo2.svg' ,css: '/css/specific/company2Styles.css'},
   schema: { name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo1.svg' ,css: '/css/specific/company1Styles.css' },
   default: { name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo4.svg' ,css: '/css/specific/company1Styles.css' },
-  contreras:{ name: 'Contreras',id: 5, favicon: '/images/favicon5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css' }
+  contreras:{ name: 'Contreras',id: 5, favicon: '/images/faviconn5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css' }
 }
 
 // brands middlewares
