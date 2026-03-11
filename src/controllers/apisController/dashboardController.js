@@ -2,13 +2,14 @@
 const gf = require("../../functions/globalFunctions")
 const df = require("../../functions/datesFunctions")
 const wd = require("../../data/weekDays")
+const vehiclesQueries = require("../../dbQueries/vehiclesQueries")
 
 const statisticsController = {
     daysEvents: async(req,res) =>{
         try{
 
             const days = 120
-            
+
             // days to get
             const daysToGet = parseInt(days) + 10
 
@@ -24,6 +25,12 @@ const statisticsController = {
                 filters.date_from = tsDaysToGetInit
             }
 
+            // company
+            const idCompanies = req.session.userLogged.id_companies
+            const vehiclesData = await vehiclesQueries.get({filters:{id_companies:idCompanies}})
+            const idsVehicles = vehiclesData.rows.map( vd => vd.id)
+            filters.id_vehicles = idsVehicles
+            
             // get data
             let data = await gf.getDetectedEvents(undefined, undefined, filters)
             data = data.rows
@@ -78,6 +85,12 @@ const statisticsController = {
 
             const filters = {}
             filters.date_from = tsDaysToGetInit
+
+            // company
+            const idCompanies = req.session.userLogged.id_companies
+            const vehiclesData = await vehiclesQueries.get({filters:{id_companies:idCompanies}})
+            const idsVehicles = vehiclesData.rows.map( vd => vd.id)
+            filters.id_vehicles = idsVehicles
 
             let data = await gf.getDetectedEvents(undefined, undefined, filters)
             data = data.rows

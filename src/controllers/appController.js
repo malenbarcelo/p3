@@ -54,7 +54,6 @@ const appController = {
     // vehicles
     vehicles: async(req,res) => {
         try{
-            console.log(req.session.userLogged)
             
             const selectedItem = 'VEHÍCULOS'
             let companies = await companiesQueries.get({filters:{order:[["company","ASC"]]}})
