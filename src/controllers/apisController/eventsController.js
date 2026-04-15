@@ -14,6 +14,8 @@ const eventsController = {
             const data = req.body
             let dataToCreate = {}
 
+            console.log(data)
+
             // get date
             const date = new Intl.DateTimeFormat('es-AR', {
                 timeZone: 'America/Argentina/Buenos_Aires',
