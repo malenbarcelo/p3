@@ -14,7 +14,7 @@ const eventsController = {
             const data = req.body
             const host = getHost(req)
             const fileName = `r${data.vehicle_code}_${data.start_date_time}.mp4`
-            const key = `p3/${host}/${fileName}`
+            const key = `p3/${fileName}`
             const url = `${r2Credentials.publicUrl}/${key}`
             
             const dataToCreate = {
@@ -163,7 +163,7 @@ const eventsController = {
             const company = res.locals.brand || 'default'
             const companyAlias = company.alias
 
-            const fileName = `${Date.now()}-${file.originalname}`
+            const fileName = `${file.originalname}`
 
             const url = await uploadToR2({
                 fileBuffer: file.buffer,
