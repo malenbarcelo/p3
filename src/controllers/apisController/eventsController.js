@@ -13,8 +13,7 @@ const eventsController = {
 
             const data = req.body
             let dataToCreate = {}
-
-            console.log(data)
+            let idCompanies = 1 // default
 
             // get date
             const date = new Intl.DateTimeFormat('es-AR', {
@@ -36,12 +35,13 @@ const eventsController = {
             const vehicleData = await vehiclesQueries.get({filters:{exact_vehicle_code:data.vehicle_code}})
             if (vehicleData.rows.length > 0) {
                 dataToCreate.id_vehicles = vehicleData.rows[0].id
+                idCompanies = vehicleData.rows[0].id_companies
             }else{
                 
                 // find company
                 const project = data.vehicle_code.split('_')[0]
                 const companyProject = await companiesProjectsQueries.get({filters:{project: project}})
-                const idCompanies = companyProject.length > 0 ? companyProject[0].id_companies : 1 // if project doesn't exist complets with Schema
+                idCompanies = companyProject.length > 0 ? companyProject[0].id_companies : 1 // if project doesn't exist complets with Schema
 
                 // create vehicle
                 const createdVehicle = await vehiclesQueries.create([{vehicle_code:data.vehicle_code,id_companies:idCompanies}])
