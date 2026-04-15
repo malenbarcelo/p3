@@ -4,6 +4,10 @@ const weekDays = require("../data/weekDays")
 const months = require("../data/months")
 const fsp = require('fs/promises')
 const path = require('path')
+const { HeadObjectCommand } = require('@aws-sdk/client-s3')
+const s3 = require('../data/r2Config')
+const r2Credentials = require('../data/r2Credentials')
+const findR2Videos = require("./findR2Videos")
 
 const globalFunctions = {
     specialChars: (value) => {
@@ -46,15 +50,10 @@ const globalFunctions = {
         })
 
         // find videos
-        for (let i = 0; i < data.rows.length; i++) {
-            const videoPath = path.join(__dirname,`../../public/videos/${data.rows[i].video}.mp4`)
-            try {
-                await fsp.access(videoPath)
-                data.rows[i].findVideo = 1
-            } catch {
-                data.rows[i].findVideo = 0
-            }
-        }
+        await Promise.all(data.rows.map(async (row) => {
+            const exists = await findR2Videos(row.video_url)
+            row.findVideo = exists ? 1 : 0
+        }))
 
         return data
     },

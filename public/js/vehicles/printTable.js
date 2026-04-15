@@ -55,14 +55,23 @@ function eventListeners(data) {
             details.addEventListener('click',async()=>{
                 loader.style.display = 'block'
                 g.firstLoad = 1
-                g.firstLoad = 1
                 g.edppFilters.id_vehicles = element.id
-                //g.events = await f.getEventsData()
-                //f.resetEventsData()
+
+                // reset filters
+                g.edppFilters.date_from = ''
+                g.edppFilters.date_until = ''
+                g.edppFilters.duration_min = ''
+                g.edppFilters.duration_max = ''
+                gf.clearInputs([dateFrom, dateUntil, durationMin, durationMax])
+
+                // wait for data
+                await f.resetEventsData()
+
+                // open popup with data already loaded
                 edppTitle.innerText = element.vehicle_code
                 edpp.style.display = 'block'
                 requestAnimationFrame(() => edpp.classList.add('is-open'))
-                edppUnfilter.click()
+
                 loader.style.display = 'none'                
             })  
         }        

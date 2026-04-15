@@ -67,11 +67,11 @@ app.use((req, res, next) => {
 
 // brands
 app.locals.brands = {
-  aesa: { name: 'AESA', id: 3, favicon: '/images/favicon3.jpg', logo: '/images/companyLogo3.svg', loginLogo: '/images/loginCompanyLogo3.jpg' ,css: '/css/specific/company3Styles.css'},
-  techint: { name: 'Techint-SACDE', id: 2, favicon: '/images/faviconn5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css'},
-  schema: { name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo1.svg' ,css: '/css/specific/company1Styles.css' },
-  default: { name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo4.svg' ,css: '/css/specific/company1Styles.css' },
-  contreras:{ name: 'Contreras',id: 5, favicon: '/images/faviconn5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css' }
+  aesa: { alias: 'aesa',name: 'AESA', id: 3, favicon: '/images/favicon3.jpg', logo: '/images/companyLogo3.svg', loginLogo: '/images/loginCompanyLogo3.jpg' ,css: '/css/specific/company3Styles.css'},
+  techint: { alias: 'techint_sacde',name: 'Techint-SACDE', id: 2, favicon: '/images/faviconn5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css'},
+  schema: { alias:'schema',name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo1.svg' ,css: '/css/specific/company1Styles.css' },
+  default: { alias:'schema',name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo4.svg' ,css: '/css/specific/company1Styles.css' },
+  contreras:{ alias:'contreras',name: 'Contreras',id: 5, favicon: '/images/faviconn5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css' }
 }
 
 // brands middlewares
@@ -146,7 +146,8 @@ app.use('/composed',composedRoutes)
 app.use('/apis',composedRoutes)
 
 
-//console.log('malen: ' + bcrypt.hashSync('contreras',10))
+//console.log('malen: ' + bcrypt.hashSync('techint1',10))
+
 
 // const dateString = '28/10/2025'
 // const [dia, mes, año] = dateString.split('/')

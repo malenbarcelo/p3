@@ -3,16 +3,24 @@ const detectedEventsQueries = require("../../dbQueries/detectedEventsQueries")
 const companiesProjectsQueries = require("../../dbQueries/companiesProjectsQueries")
 const vehiclesQueries = require("../../dbQueries/vehiclesQueries")
 const json = require("../../data/jsonEvenst")
+const uploadToR2 = require('../../functions/uploadToR2')
+const getHost = require('../../data/host')
+const r2Credentials = require('../../data/r2Credentials')
 
 const eventsController = {
     sendEvents: async(req,res) =>{
         try{
 
             const data = req.body
+            const host = getHost(req)
+            const fileName = `r${data.vehicle_code}_${data.start_date_time}.mp4`
+            const key = `p3/${host}/${fileName}`
+            const url = `${r2Credentials.publicUrl}/${key}`
+            
             const dataToCreate = {
                 start_timestamp: data.start_date_time,
                 duration_seconds: data.event_duration_seconds,
-                video: 'r' + data.vehicle_code + '_' + data.start_date_time
+                video_url: url
             }
 
             // get date
@@ -69,10 +77,14 @@ const eventsController = {
             for (let i = 0; i < allData.length; i++) {
                 const data = allData[i]
 
+                const host = getHost(req)
+                const fileName = `r${data.vehicle_code}_${data.start_date_time}.mp4`
+                const key = `p3/${host}/${fileName}`
+
                 newData = {
                     start_timestamp: data.start_date_time,
                     duration_seconds: data.event_duration_seconds,
-                    video: 'r' + data.vehicle_code + '_' + data.start_date_time
+                    video: key
                 }
 
                 // get date
@@ -124,19 +136,56 @@ const eventsController = {
             res.json({message:'Error al crear los datos'})
         }
     },
-    saveVideo: async(req,res) =>{
-    try{
+    // saveVideo: async(req,res) =>{
+    //     try{
 
-      const data = req.body
-      data.video = req.file.filename
+    //     const data = req.body
+    //     data.video = req.file.filename
 
-      res.status(200).json({ message: 'Video cargado exitosamente', filename: req.file.filename })
+    //     res.status(200).json({ message: 'Video cargado exitosamente', filename: req.file.filename })
 
-    }catch(error){
-      console.group(error)
-      res.json({message:'Error al guardar el video'})
+    //     }catch(error){
+    //     console.group(error)
+    //     res.json({message:'Error al guardar el video'})
+    //     }
+    // },
+    saveVideo: async (req, res) => {
+        try {
+
+            const data = req.body
+            const file = req.file
+
+            if (!file) {
+                return res.status(400).json({ message: 'No se envió archivo' })
+            }
+
+            const domain = req.headers.host
+            const company = res.locals.brand || 'default'
+            const companyAlias = company.alias
+
+            const fileName = `${Date.now()}-${file.originalname}`
+
+            const url = await uploadToR2({
+                fileBuffer: file.buffer,
+                fileName,
+                contentType: file.mimetype,
+                domain,
+                companyAlias
+            })
+
+            // 🔥 ahora guardás la URL en vez del filename
+            data.video = url
+
+            res.status(200).json({
+                message: 'Video cargado exitosamente',
+                url
+            })
+
+        } catch (error) {
+            console.log(error)
+            res.json({ message: 'Error al guardar el video' })
+        }
     }
-  },
 }
 module.exports = eventsController
 

@@ -12,6 +12,7 @@ npm install nodemailer
 npm install googleapis
 npm install node-fetch@2
 npm install cors
+npm install @aws-sdk/client-s3
 
 /*---Sequelize---*/
 1. npm install --save sequelize-cli
@@ -25,7 +26,7 @@ npm install xlsx
 
 Resumed --->
 npm init -y
-npm install express ejs method-override multer express-validator express-session bcryptjs sequelize-cli sequelize mysql2 exceljs read-excel-file session-file-store xlsx nodemailer googleapis node-fetch@2 cors
+npm install express ejs method-override multer express-validator express-session bcryptjs sequelize-cli sequelize mysql2 exceljs read-excel-file session-file-store xlsx nodemailer googleapis node-fetch@2 cors @aws-sdk/client-s3
 
 To do actions Sequelize
 1. Create file .sequelizerc

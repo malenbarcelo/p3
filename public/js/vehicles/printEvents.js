@@ -29,13 +29,10 @@ async function printEvents() {
 
     data.forEach((element,index) => {
         
-        // timestamp 90 previous days
-        const lastTimestamp = Math.floor(Date.now() / 1000) - 500 * 24 * 60 * 60
-        
         // view and download icons
-        const enabledIcon = element.start_timestamp > lastTimestamp && element.findVideo == 1
+        const enabledIcon = element.findVideo == 1
         const viewIcon = enabledIcon ? `<i class="fa-regular fa-circle-play event-action-icon" id="edppView_${element.id}" data-tooltip="Reproducir video"></i>` : `<i class="fa-solid fa-circle-play unabled-icon"></i>`
-        const downloadIcon = enabledIcon ? `<a href="/videos/${element.video}.mp4" download="${element.video}.mp4"><i class="fa-solid fa-download event-action-icon" id="edppDownload_${element.id}" data-tooltip="Descargar video"></i></a>` : `<i class="fa-solid fa-download unabled-icon"></i>`
+        const downloadIcon = enabledIcon ? `<a href="${element.video_url}" download="${element.video}.mp4"><i class="fa-solid fa-download event-action-icon" id="edppDownload_${element.id}" data-tooltip="Descargar video"></i></a>` : `<i class="fa-solid fa-download unabled-icon"></i>`
         
         html += `
             <div class="event-list-item">
@@ -74,24 +71,18 @@ function eventListeners(data) {
 
                 edppLoader.style.display = 'block'
 
-                const videoUrl = `videos/${element.video}.mp4`
+                const videoUrl = `${element.video_url}`
                 
                 vvppTitle.innerText = element.vehicle_data.vehicle_code
                 vvppSubtitle.innerText = element.date + ' ' + element.time
 
                 vvpp.style.display = 'block'
 
-                try {
-                    const head = await fetch(videoUrl, { method: 'HEAD', cache: 'no-store' })
-                    if (!head.ok) throw new Error(`HTTP ${head.status}`)
-                    vvppVideoName.src = videoUrl
-                    vvppVideoPlayer.load()
-                    vvppVideoPlayer.play().catch(e => console.log('Play error:', e))
-                } catch (err) {
-                    console.error('No se pudo cargar el video:', err)
-                } finally {
-                    edppLoader.style.display = 'none'
-                }            
+                vvppVideoName.src = videoUrl
+                vvppVideoPlayer.load()
+                vvppVideoPlayer.play().catch(e => console.log('Play error:', e))
+
+                edppLoader.style.display = 'none'
             })
         }
         

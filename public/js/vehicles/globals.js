@@ -15,7 +15,7 @@ let g = {
     // edpp table
     edppPages: 0,
     edppFilters: {
-        size:16,
+        size:8,
         page:1,
         id_vehicles:'',
         date_from:'',
