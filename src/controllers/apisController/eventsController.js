@@ -12,16 +12,7 @@ const eventsController = {
         try{
 
             const data = req.body
-            const host = getHost(req)
-            const fileName = `r${data.vehicle_code}_${data.start_date_time}.mp4`
-            const key = `p3/${fileName}`
-            const url = `${r2Credentials.publicUrl}/${key}`
-            
-            const dataToCreate = {
-                start_timestamp: data.start_date_time,
-                duration_seconds: data.event_duration_seconds,
-                video_url: url
-            }
+            let dataToCreate = {}
 
             // get date
             const date = new Intl.DateTimeFormat('es-AR', {
@@ -34,6 +25,10 @@ const eventsController = {
                 second: '2-digit',
                 hour12: false
             }).format(new Date(data.start_date_time * 1000)).split(', ')
+
+            // add date
+            dataToCreate.date = date[0]
+            dataToCreate.time = date[1]
 
             // get vehicle
             const vehicleData = await vehiclesQueries.get({filters:{exact_vehicle_code:data.vehicle_code}})
@@ -51,10 +46,14 @@ const eventsController = {
                 dataToCreate.id_vehicles = createdVehicle[0].id
             }
 
-            // add date
-            dataToCreate.date = date[0]
-            dataToCreate.time = date[1]
+            // dataToCreate data
+            const fileName = `r${data.vehicle_code}_${data.start_date_time}.mp4`
+            const key = `p3/${idCompanies}/${fileName}`
+            const url = `${r2Credentials.publicUrl}/${key}`
             
+            dataToCreate.start_timestamp = data.start_date_time,
+            dataToCreate.duration_seconds = data.event_duration_seconds,
+            dataToCreate.video_url = url
 
             // create event
             await detectedEventsQueries.create([dataToCreate])
@@ -159,18 +158,14 @@ const eventsController = {
                 return res.status(400).json({ message: 'No se envió archivo' })
             }
 
-            const domain = req.headers.host
-            const company = res.locals.brand || 'default'
-            const companyAlias = company.alias
+            const idCompanies = res.locals.brand.id || 1 // schema if default
 
             const fileName = `${file.originalname}`
 
             const url = await uploadToR2({
                 fileBuffer: file.buffer,
                 fileName,
-                contentType: file.mimetype,
-                domain,
-                companyAlias
+                idCompanies
             })
 
             // 🔥 ahora guardás la URL en vez del filename
