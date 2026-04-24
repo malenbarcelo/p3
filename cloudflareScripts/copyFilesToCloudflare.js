@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 const { PutObjectCommand, HeadObjectCommand } = require('@aws-sdk/client-s3')
-const s3 = require('./src/data/r2Config')
-const r2Credentials = require('./src/data/r2Credentials')
+const s3 = require('../src/data/r2Config')
+const r2Credentials = require('../src/data/r2Credentials')
 
 const VIDEOS_DIR = path.resolve('./public/videos')
 const VMOS_DEVICES = ['SDA00008', 'SDA00014', 'SDA00019', 'SDA00055']

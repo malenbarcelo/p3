@@ -46,7 +46,7 @@
 }
 
 .vehicle-list-item:hover{
-    background-color: #f0f7ff;
+    background-color: #f0f0f0;
     transform: translateX(4px);
     box-shadow: -4px 0 0 0 var(--color1);
 }
@@ -189,7 +189,7 @@
 }
 
 .event-list-item:hover{
-    background-color: #f0f7ff;
+    background-color: #f0f0f0;
 }
 
 .event-list-item:last-child{

@@ -28,11 +28,11 @@ function printChartWeeks() {
             borderWidth: 0,
             backgroundColor: ctx => {
                 const key = `${ctx.datasetIndex}:${ctx.dataIndex}`
-                return key === selectedKey ? 'rgba(0, 125, 186, 1)' : 'rgba(0, 125, 186, 0.3)'
+                return key === selectedKey ? g.color1Full : g.color1Soft
             },
             hoverBackgroundColor: ctx => {
                 const key = `${ctx.datasetIndex}:${ctx.dataIndex}`
-                return key === selectedKey ? 'rgba(0, 125, 186, 1)' : 'rgba(0, 125, 186, 0.6)'
+                return key === selectedKey ? g.color1Full : g.color1Hover
             },
             borderRadius: 6,
             categoryPercentage: 0.7,

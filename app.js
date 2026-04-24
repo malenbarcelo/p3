@@ -70,8 +70,9 @@ app.locals.brands = {
   aesa: { alias: 'aesa',name: 'AESA', id: 3, favicon: '/images/favicon3.jpg', logo: '/images/companyLogo3.svg', loginLogo: '/images/loginCompanyLogo3.jpg' ,css: '/css/specific/company3Styles.css'},
   techint: { alias: 'techint_sacde',name: 'Techint-SACDE', id: 2, favicon: '/images/faviconn5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css'},
   schema: { alias:'schema',name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo1.svg' ,css: '/css/specific/company1Styles.css' },
-  default: { alias:'schema',name: 'SCHEMA', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo4.svg' ,css: '/css/specific/company1Styles.css' },
-  contreras:{ alias:'contreras',name: 'Contreras',id: 5, favicon: '/images/faviconn5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css' }
+  default: { alias:'schema',name: 'Schema', id: 1, favicon: '/images/favicon1.jpg', logo: '/images/companyLogo1.jpg', loginLogo: '/images/loginCompanyLogo1.jpg' ,css: '/css/specific/company1Styles.css' },
+  contreras:{ alias:'contreras',name: 'Contreras',id: 5, favicon: '/images/faviconn5.jpg', logo: '/images/companyLogo5.jpg', loginLogo: '/images/loginCompanyLogo5.jpg' ,css: '/css/specific/company5Styles.css' },
+  proyectos3: { alias:'p3',name: 'Proyectos 3', id: 6, favicon: '/images/favicon6.jpg', logo: '/images/companyLogo6.png', loginLogo: '/images/loginCompanyLogo6.jpg' ,css: '/css/specific/company6Styles.css' },
 }
 
 // brands middlewares
@@ -146,7 +147,7 @@ app.use('/composed',composedRoutes)
 app.use('/apis',composedRoutes)
 
 
-//console.log('malen: ' + bcrypt.hashSync('techint1',10))
+console.log('malen: ' + bcrypt.hashSync('admp3',10))
 
 
 // const dateString = '28/10/2025'

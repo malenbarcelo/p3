@@ -1,0 +1,17 @@
+/* colors */
+:root{
+    --color1:#22303D;
+    --color2:#ACB9BE;
+    --color3:rgb(221, 212, 212);
+    --color4:rgb(252, 246, 246);
+
+}
+
+.company-logo{
+    height: 65px;
+    margin-left: 5px;
+}
+
+.login-logo-company{
+    background-color: var(--color1) !important;
+}

@@ -160,7 +160,10 @@ const eventsController = {
                 return res.status(400).json({ message: 'No se envió archivo' })
             }
 
-            const idCompanies = res.locals.brand.id || 1 // schema if default
+            // get company id from vehicle code
+            const vehicle = file.originalname.replace('.mp4', '').replace(/^r/, '').split('_').slice(0, -1).join('_')
+            const vehicleData = await vehiclesQueries.get({filters:{exact_vehicle_code:vehicle}})
+            const idCompanies = vehicleData.rows.length > 0 ? vehicleData.rows[0].id_companies : 1 // schema if default
 
             const fileName = `${file.originalname}`
 
@@ -170,7 +173,7 @@ const eventsController = {
                 idCompanies
             })
 
-            // 🔥 ahora guardás la URL en vez del filename
+            //🔥 ahora guardás la URL en vez del filename
             data.video = url
 
             res.status(200).json({

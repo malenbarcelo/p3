@@ -32,7 +32,7 @@ function printChartWeek() {
                 label: 'Qty',
                 data: values,
                 borderWidth: 0,
-                backgroundColor: 'rgba(0, 125, 186, 1)',
+                backgroundColor: g.color1Full,
                 borderRadius: 6,
                 categoryPercentage: 0.7,
                 barPercentage: 0.8
