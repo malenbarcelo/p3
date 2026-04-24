@@ -29,7 +29,7 @@ const globalFunctions = {
         return `${parts.day}/${parts.month}/${parts.year} ${parts.hour}:${parts.minute}:${parts.second}`
     },
 
-    getDetectedEvents: async(limit, offset, filters) => {
+    getDetectedEvents: async(limit, offset, filters, checkVideos = true) => {
         
         let data = await detectedEventsQueries.get({ limit, offset, filters })
 
@@ -50,10 +50,12 @@ const globalFunctions = {
         })
 
         // find videos
-        await Promise.all(data.rows.map(async (row) => {
-            const exists = await findR2Videos(row.video_url)
-            row.findVideo = exists ? 1 : 0
-        }))
+        if (checkVideos) {
+            await Promise.all(data.rows.map(async (row) => {
+                const exists = await findR2Videos(row.video_url)
+                row.findVideo = exists ? 1 : 0
+            }))
+        }
 
         return data
     },

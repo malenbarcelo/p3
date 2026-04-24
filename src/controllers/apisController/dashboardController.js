@@ -32,7 +32,7 @@ const statisticsController = {
             filters.id_vehicles = idsVehicles
             
             // get data
-            let data = await gf.getDetectedEvents(undefined, undefined, filters)
+            let data = await gf.getDetectedEvents(undefined, undefined, filters, false)
             data = data.rows
 
             // group data
@@ -92,7 +92,7 @@ const statisticsController = {
             const idsVehicles = vehiclesData.rows.map( vd => vd.id)
             filters.id_vehicles = idsVehicles
 
-            let data = await gf.getDetectedEvents(undefined, undefined, filters)
+            let data = await gf.getDetectedEvents(undefined, undefined, filters, false)
             data = data.rows
 
             // group data
@@ -168,7 +168,7 @@ const statisticsController = {
             const filters = {}
             filters.date_from = tsDaysToGetInit
 
-            let data = await gf.getDetectedEvents(undefined, undefined, filters)
+            let data = await gf.getDetectedEvents(undefined, undefined, filters, false)
             data = data.rows
 
             // group data

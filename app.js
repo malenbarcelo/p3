@@ -147,7 +147,7 @@ app.use('/composed',composedRoutes)
 app.use('/apis',composedRoutes)
 
 
-console.log('malen: ' + bcrypt.hashSync('admp3',10))
+//console.log('malen: ' + bcrypt.hashSync('admp3',10))
 
 
 // const dateString = '28/10/2025'
